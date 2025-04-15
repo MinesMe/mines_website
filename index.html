@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1win App</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Шапка теперь с контейнером для динамического контента -->
+<body class="dark-theme">
+
     <header class="app-header">
         <div id="header-content-container">
-            <!-- Контент будет вставлен сюда с помощью JavaScript -->
-            <!-- По умолчанию покажем логотип Мин, так как это первая секция -->
             <img src="logo.png" alt="1win x Mines Logo" class="header-logo">
         </div>
     </header>
@@ -20,77 +21,71 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <!-- Мины -->
-                    <li class="nav-item active-nav">
-                        <a href="#" data-section="mines">
-                            <img src="icon-mines.png" alt="Mines" class="nav-icon">
-                            <span class="nav-text">Мины</span>
-                        </a>
-                    </li>
-                    <!-- Авиатор -->
-                    <li class="nav-item">
-                        <a href="#" data-section="aviator">
-                             <img src="icon-aviator.png" alt="Aviator" class="nav-icon">
-                            <span class="nav-text">Авиатор</span>
-                        </a>
-                    </li>
-                     <!-- Настройки -->
-                    <li class="nav-item">
-                        <a href="#" data-section="settings">
-                           <img src="icon-settings.png" alt="Settings" class="nav-icon">
-                            <span class="nav-text">Настройки</span>
-                        </a>
-                    </li>
+                    <li class="nav-item active-nav"><a href="#" data-section="mines"><img src="icon-mines.png" alt="Mines" class="nav-icon"><span class="nav-text">Мины</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="aviator"><img src="icon-aviator.png" alt="Aviator" class="nav-icon"><span class="nav-text">Авиатор</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="luckyjet"><img src="icon-luckyjet.png" alt="Lucky Jet" class="nav-icon"><span class="nav-text">Lucky Jet</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="speedcash"><img src="icon-speedcash.png" alt="Speed & Cash" class="nav-icon"><span class="nav-text">Speed & Cash</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="jetx"><img src="icon-jetx.png" alt="JetX" class="nav-icon"><span class="nav-text">JetX</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="settings"><img src="icon-settings.png" alt="Settings" class="nav-icon"><span class="nav-text">Настройки</span></a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="main-content">
-            <!-- ==================== Раздел Мины ==================== -->
             <div id="mines-section" class="content-section active">
-                 <!-- Заголовок секции убран, т.к. он теперь в шапке -->
-                 <!-- <h2>Мины</h2> -->
-                 <div class="game-controls">
-                    <label for="mine-count">Количество мин:</label>
-                    <select id="mine-count">
-                        <option value="2">2</option>
-                        <option value="3" selected>3</option>
-                        <option value="5">5</option>
-                        <option value="7">7</option>
-                    </select>
-                    <button id="predict-button">Сгенерировать Прогноз</button>
-                </div>
-                <h3>Игровое поле (5x5)</h3>
-                <div id="game-board" class="game-board">
-                    <!-- Ячейки поля будут сгенерированы JavaScript -->
-                </div>
+                 <div class="game-controls"><label for="mine-count">Количество мин:</label><select id="mine-count"><option value="2">2</option> <option value="3" selected>3</option> <option value="5">5</option> <option value="7">7</option></select><button id="predict-button" class="generate-button">Сгенерировать Прогноз</button></div>
+                 <h3>Игровое поле (5x5)</h3><div id="game-board" class="game-board"></div>
             </div>
-
-            <!-- ==================== Раздел Авиатор ==================== -->
             <div id="aviator-section" class="content-section">
-                <!-- Заголовок секции убран -->
-                <!-- <h2>Авиатор</h2> -->
-                 <img src="aviator-game-logo.png" alt="Aviator Game Logo" id="aviator-game-logo">
-                <div id="aviator-timer-display">
-                    <span id="aviator-timer">20.0s</span>
-                </div>
-                <div id="aviator-result-display">
-                     <span id="aviator-result">1.00x</span>
-                </div>
+                 <img src="aviator-game-logo.png" alt="Aviator Game Logo" id="aviator-game-logo" class="section-game-logo">
+                 <div id="aviator-timer-display" class="timer-display"><span id="aviator-timer" class="timer-span">0.0s</span></div>
+                 <div id="aviator-result-display" class="result-display single-result"><span id="aviator-result" class="result-span">1.00x</span></div>
+                 <button id="aviator-generate-button" class="generate-button">Сгенерировать Прогноз</button>
+            </div>
+             <div id="luckyjet-section" class="content-section">
+                 <img src="luckyjet-game-logo.png" alt="Lucky Jet Game Logo" id="luckyjet-game-logo" class="section-game-logo">
+                 <div id="luckyjet-timer-display" class="timer-display"><span id="luckyjet-timer" class="timer-span">0.0s</span></div>
+                 <div id="luckyjet-result-display" class="result-display single-result"><span id="luckyjet-result" class="result-span">1.00x</span></div>
+                 <button id="luckyjet-generate-button" class="generate-button">Сгенерировать Прогноз</button>
+            </div>
+            <div id="speedcash-section" class="content-section">
+                 <img src="speedcash-game-logo.png" alt="Speed & Cash Game Logo" id="speedcash-game-logo" class="section-game-logo">
+                 <div id="speedcash-timer-display" class="timer-display"><span id="speedcash-timer" class="timer-span">0.0s</span></div>
+                 <div class="speedcash-results-container"><div id="speedcash-result-blue-display" class="result-display car-result blue-car"><span id="speedcash-result-blue" class="result-span">1.00x</span><div class="car-label">Blue Car</div></div><div id="speedcash-result-orange-display" class="result-display car-result orange-car"><span id="speedcash-result-orange" class="result-span">1.00x</span><div class="car-label">Orange Car</div></div></div>
+                 <button id="speedcash-generate-button" class="generate-button">Сгенерировать Прогноз</button>
+            </div>
+            <div id="jetx-section" class="content-section">
+                 <img src="jetx-game-logo.png" alt="JetX Game Logo" id="jetx-game-logo" class="section-game-logo">
+                 <div id="jetx-timer-display" class="timer-display"><span id="jetx-timer" class="timer-span">0.0s</span></div>
+                 <div id="jetx-result-display" class="result-display single-result"><span id="jetx-result" class="result-span jetx-color">1.00x</span></div>
+                 <button id="jetx-generate-button" class="generate-button">Сгенерировать Прогноз</button>
             </div>
 
-            <!-- ==================== Раздел Настройки ==================== -->
             <div id="settings-section" class="content-section">
-                 <!-- Заголовок секции убран -->
-                 <!-- <h2>Настройки</h2> -->
-                 <div class="settings-item agreement">
-                     <a href="#">Пользовательское соглашение</a>
+                 <div class="settings-group">
+                     <h4>Внешний вид</h4>
+                     <label class="theme-switch" for="theme-checkbox">
+                         <input type="checkbox" id="theme-checkbox">
+                         <span class="slider round"></span>
+                         <span class="theme-label">Переключить тему</span>
+                     </label>
                  </div>
-                 <p class="disclaimer">
-                     Значения и прогнозы являются случайными и не имеют отношения к реальным ставкам.
-                 </p>
+                 <div class="settings-group">
+                     <h4>Информация</h4>
+                    <div class="settings-item agreement"><a href="#">Пользовательское соглашение</a></div>
+                    <button id="how-it-works-button" class="settings-button">Как это работает?</button>
+                    <div id="how-it-works-content" class="how-it-works" style="display: none;">
+                        <p>Это приложение генерирует случайные числовые значения и прогнозы для развлекательных целей. Все отображаемые коэффициенты, таймеры и исходы игр являются результатом работы генератора псевдослучайных чисел и **не имеют никакого отношения** к реальным игровым платформам или реальным ставкам. Используйте это приложение исключительно для развлечения.</p>
+                    </div>
+                 </div>
+                 <p class="disclaimer">Значения и прогнозы являются случайными и не имеют отношения к реальным ставкам.</p>
             </div>
         </main>
+
+        <div id="history-panel">
+            <h4>История Прогнозов (Crash)</h4>
+            <ul id="history-list"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>

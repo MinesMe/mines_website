@@ -1,5 +1,37 @@
-/* Общие стили и Темная тема */
 :root {
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --transition-speed: 0.3s;
+    --header-height: 55px;
+    --sidebar-width-desktop: 240px;
+    --history-width-desktop: 220px;
+    --history-width-mobile: 90px;
+    --bottom-nav-height-mobile: 65px;
+    --theme-label-font: 'Nunito', sans-serif;
+    --control-padding-vertical: 8px; /* Единый вертикальный паддинг */
+    --control-padding-horizontal: 18px; /* Единый горизонтальный паддинг */
+    --control-line-height: 1.5; /* Единая высота строки */
+    --control-font-size: 0.95rem; /* Единый размер шрифта */
+
+    /* Акцентные цвета */
+    --accent-blue: #007bff;
+    --accent-blue-hover: #0056b3;
+    --accent-red: #e74c3c;
+    --accent-orange: #f39c12;
+    --jetx-yellow: #f1c40f;
+    --luckyjet-purple: #9b59b6;
+    --result-default: #ff4757;
+    --timer-color: #f5bd4f;
+
+    /* Градиенты для фона секций */
+    --mines-bg-gradient: radial-gradient(circle at top left, rgba(43, 48, 64, 0.1), rgba(26, 29, 42, 0.1) 70%);
+    --aviator-bg-gradient: radial-gradient(circle at top right, rgba(80, 30, 40, 0.1), rgba(26, 29, 42, 0.1) 70%);
+    --luckyjet-bg-gradient: radial-gradient(circle at top left, rgba(155, 89, 182, 0.08), rgba(26, 29, 42, 0.1) 70%);
+    --speedcash-bg-gradient: radial-gradient(circle at center, rgba(30, 60, 80, 0.1), rgba(26, 29, 42, 0.1) 70%);
+    --jetx-bg-gradient: radial-gradient(circle at bottom right, rgba(80, 70, 30, 0.1), rgba(26, 29, 42, 0.1) 70%);
+}
+
+/* --- Темы --- */
+.dark-theme {
     --bg-primary: #1a1d2a;
     --bg-secondary: #212534;
     --bg-tertiary: #2b3040;
@@ -8,403 +40,261 @@
     --text-primary: #e0e0e0;
     --text-secondary: #a0a8bA;
     --text-white: #ffffff;
-    --accent-blue: #007bff;
-    --accent-blue-hover: #0056b3;
-    --accent-red: #ff6b6b;
-    --aviator-red: #ff4757;
-    --aviator-glow: rgba(255, 71, 87, 0.5);
-    --timer-color: #f5bd4f;
-    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --transition-speed: 0.25s;
-    --header-height: 55px; /* Высота шапки */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --result-glow: rgba(255, 71, 87, 0.4);
+    --blue-glow: rgba(0, 123, 255, 0.4);
+    --orange-glow: rgba(243, 156, 18, 0.4);
+    --yellow-glow: rgba(241, 196, 15, 0.4);
+    --purple-glow: rgba(155, 89, 182, 0.4);
+    --history-item-bg: rgba(255, 255, 255, 0.03);
+}
+.light-theme {
+    --bg-primary: #f4f6f8;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e9ecef;
+    --bg-tertiary-light: #dee2e6;
+    --border-color: #ced4da;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-white: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --result-glow: rgba(255, 71, 87, 0.3);
+    --blue-glow: rgba(0, 123, 255, 0.3);
+    --orange-glow: rgba(243, 156, 18, 0.3);
+    --yellow-glow: rgba(241, 196, 15, 0.3);
+    --purple-glow: rgba(155, 89, 182, 0.3);
+    --history-item-bg: rgba(0, 0, 0, 0.03);
 }
 
-body {
-    margin: 0;
-    font-family: var(--font-main);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    overflow-x: hidden;
-}
+/* ----- Общие стили ----- */
+body { margin: 0; font-family: var(--font-main); display: flex; flex-direction: column; height: 100vh; background-color: var(--bg-primary); color: var(--text-primary); overflow: hidden; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; padding: 0; margin: 0; }
+h3 { color: var(--text-secondary); text-align: center; margin: 15px 0; font-size: 1.1rem; font-weight: 500; }
+h4 { color: var(--text-secondary); margin-top: 0; margin-bottom: 10px; font-size: 1rem; font-weight: 600; text-align: center; }
+button { cursor: pointer; font-family: inherit; }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+/* ----- Структура ----- */
+.app-header { background-color: var(--bg-secondary); height: var(--header-height); padding: 0 20px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; z-index: 30; }
+#header-content-container { display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; transition: opacity 0.15s ease-in-out; }
+#header-content-container > * { max-height: 80%; max-width: 90%; object-fit: contain; width: auto; height: auto; }
+#header-aviator-img, #header-luckyjet-img, #header-speedcash-img, #header-jetx-img { width: 180px; }
+#header-text { font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin: 0; line-height: var(--header-height); }
+.app-body { display: flex; flex-grow: 1; height: calc(100vh - var(--header-height)); position: relative; }
 
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+/* ----- Навигация (Сайдбар - Десктоп) ----- */
+.sidebar { width: var(--sidebar-width-desktop); background-color: var(--bg-secondary); padding: 15px 0; display: flex; flex-direction: column; flex-shrink: 0; border-right: 1px solid var(--border-color); transition: width var(--transition-speed) ease, background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; overflow-y: auto; height: 100%; z-index: 10; }
+.sidebar nav ul { width: 100%; }
+.sidebar .nav-item a { display: flex; align-items: center; padding: 12px 20px; font-size: 1rem; font-weight: 500; color: var(--text-secondary); border-left: 4px solid transparent; transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-left-color var(--transition-speed) ease; position: relative; overflow: hidden; }
+.sidebar .nav-item a:hover { background-color: var(--bg-tertiary); color: var(--text-primary); }
+.sidebar .nav-item.active-nav a { color: var(--text-primary); background-color: var(--bg-tertiary); border-left-color: var(--accent-blue); }
+.nav-icon { width: 28px; height: 28px; margin-right: 15px; flex-shrink: 0; object-fit: contain; vertical-align: middle; transition: transform var(--transition-speed) ease; }
+.sidebar .nav-item.active-nav a .nav-icon { transform: scale(1.1); }
+.nav-text { flex-grow: 1; white-space: nowrap; }
 
-h3 { /* Оставляем заголовок "Игровое поле" */
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
+/* ----- Основной Контент ----- */
+.main-content { flex-grow: 1; padding: 20px; background-color: var(--bg-primary); overflow-y: auto; position: relative; height: 100%; transition: background-color var(--transition-speed) ease; scroll-behavior: smooth; }
+.content-section { display: none; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5vh; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0; visibility: hidden; transform: translateY(15px) scale(0.98); transition: opacity var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0s linear var(--transition-speed), transform var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1); pointer-events: none; text-align: center; background: var(--mines-bg-gradient); border-top: 3px solid transparent; }
+.content-section.active { display: flex; opacity: 1; visibility: visible; transform: translateY(0) scale(1); transition-delay: 0s, 0s, 0s; pointer-events: auto; z-index: 1; }
+#mines-section.active { background: var(--mines-bg-gradient); border-top-color: var(--accent-blue); }
+#aviator-section.active { background: var(--aviator-bg-gradient); border-top-color: var(--result-default); }
+#luckyjet-section.active { background: var(--luckyjet-bg-gradient); border-top-color: var(--luckyjet-purple); }
+#speedcash-section.active { background: var(--speedcash-bg-gradient); border-top-color: var(--accent-blue); }
+#jetx-section.active { background: var(--jetx-bg-gradient); border-top-color: var(--jetx-yellow); }
+#settings-section.active { border-top-color: var(--text-secondary); }
 
-/* Шапка */
-.app-header {
-    background-color: var(--bg-tertiary);
-    height: var(--header-height);
-    padding: 0 20px;
-    border-bottom: 1px solid var(--border-color);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#header-content-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-
-/* Общий стиль для контента в шапке */
-.header-logo, #header-text {
-    max-height: 80%; /* Макс высота 80% от шапки */
-    max-width: 90%; /* Макс ширина 90% от шапки */
-    object-fit: contain; /* Масштабирование с сохранением пропорций */
-}
-
-/* Общий стиль для логотипов */
-.header-logo {
-    width: auto; /* Ширина авто по умолчанию */
-    height: auto; /* Высота авто по умолчанию */
-}
-
-/* ---- ИЗМЕНЕНИЕ ЗДЕСЬ ---- */
-/* Отдельный стиль для логотипа Авиатора в шапке, чтобы сделать его шире */
-#header-aviator-img {
-    width: 220px; /* Задаем конкретную ширину (подбери значение) */
-    /* height: auto; унаследовано */
-    /* max-height унаследовано */
-}
-/* ---- КОНЕЦ ИЗМЕНЕНИЯ ---- */
-
-
-/* Стиль для текстового заголовка в шапке */
-#header-text {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-white);
-    margin: 0;
-    line-height: var(--header-height);
-}
-
-
-/* Основное тело */
-.app-body {
-    display: flex;
-    flex-grow: 1;
-    overflow: hidden;
-}
-
-/* Сайдбар - Навигация */
-.sidebar {
-    width: 240px;
-    background-color: var(--bg-secondary);
-    padding: 15px 0;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    border-right: 1px solid var(--border-color);
-    transition: width var(--transition-speed) ease;
-}
-
-.sidebar nav ul {
-    width: 100%;
-}
-
-.sidebar .nav-item a {
-    display: flex;
-    align-items: center;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    border-left: 4px solid transparent;
-    transition: background-color var(--transition-speed) ease,
-                color var(--transition-speed) ease,
-                border-left-color var(--transition-speed) ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.sidebar .nav-item a:hover {
-    background-color: var(--bg-tertiary);
-    color: var(--text-white);
-}
-
-.sidebar .nav-item.active-nav a {
-    color: var(--text-white);
-    background-color: var(--bg-tertiary);
-    border-left-color: var(--accent-blue);
-}
-
-.nav-icon {
-    width: 28px;
-    height: 28px;
-    margin-right: 15px;
-    flex-shrink: 0;
-    object-fit: contain;
-    vertical-align: middle;
-    transition: transform var(--transition-speed) ease;
-}
-.sidebar .nav-item.active-nav a .nav-icon {
-    transform: scale(1.1);
-}
-
-.nav-text {
-    flex-grow: 1;
-    white-space: nowrap;
-}
-
-/* Основной контент */
-.main-content {
-    flex-grow: 1;
-    padding: 20px;
-    background-color: var(--bg-primary);
-    overflow-y: auto;
-    position: relative;
-}
-
-/* Секции контента и Анимация */
-.content-section {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: var(--main-padding, 20px);
-    left: var(--main-padding, 20px);
-    right: var(--main-padding, 20px);
-    bottom: var(--main-padding, 20px);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(20px);
-    transition: opacity var(--transition-speed) ease-out,
-                visibility var(--transition-speed) ease-out,
-                transform var(--transition-speed) ease-out;
-    pointer-events: none;
-    --main-padding: 20px;
-}
-
-.content-section.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
-    pointer-events: auto;
-    z-index: 1;
-}
-
-/* ==================== Стили для секции Мины ==================== */
-#mines-section {
-    align-items: center;
-     padding-top: 20px;
-}
-
+/* ----- Мины (ИЗМЕНЕНИЯ) ----- */
+#mines-section { justify-content: flex-start; padding-top: 20px; }
 .game-controls {
     margin-bottom: 25px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: baseline; /* <<< ИЗМЕНЕНО: Выравнивание по базовой линии */
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px 15px;
 }
-
 .game-controls label {
     font-weight: 500;
     color: var(--text-secondary);
+    margin-right: 5px;
+    padding: var(--control-padding-vertical) 0; /* Добавим паддинг для выравнивания */
+    line-height: var(--control-line-height); /* Общий line-height */
+    font-size: var(--control-font-size); /* Общий font-size */
 }
-
-.game-controls select,
-.game-controls button {
-    padding: 9px 18px;
+.game-controls select#mine-count {
+    padding: var(--control-padding-vertical) 40px var(--control-padding-vertical) var(--control-padding-horizontal);
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: var(--control-font-size);
+    line-height: var(--control-line-height);
     background-color: var(--bg-tertiary);
     color: var(--text-primary);
     cursor: pointer;
-}
-.game-controls select {
+    font-family: inherit;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a0a8bA'%3E%3Cpath d='M6 8.825l-4.412-4.413L0 6l6 6 6-6-1.588-1.588z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
-    padding-right: 35px;
+    min-width: 70px;
+    text-align: center;
+    box-sizing: border-box;
 }
+.game-controls select#mine-count:hover { background-color: var(--bg-tertiary-light); border-color: var(--text-secondary); }
+.game-controls select#mine-count:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); }
 
-.game-controls button {
+.game-controls button#predict-button {
+    padding: var(--control-padding-vertical) var(--control-padding-horizontal);
+    line-height: var(--control-line-height);
+    box-sizing: border-box;
     background-color: var(--accent-blue);
     color: white;
-    border-color: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+    border-radius: 6px;
+    font-size: var(--control-font-size);
     font-weight: 500;
-    transition: background-color var(--transition-speed) ease;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, transform 0.1s ease;
+    vertical-align: baseline; /* Явно указываем выравнивание */
 }
+#predict-button:hover { background-color: var(--accent-blue-hover); border-color: var(--accent-blue-hover); }
+#predict-button:active { transform: scale(0.97); }
 
-.game-controls button:hover {
-    background-color: var(--accent-blue-hover);
-}
-
-.game-board {
-    display: grid;
-    grid-template-columns: repeat(5, 75px);
-    grid-template-rows: repeat(5, 75px);
-    gap: 6px;
-    margin-top: 15px;
-    width: fit-content;
-    border: none;
-    padding: 6px;
-    background-color: var(--bg-secondary);
-    border-radius: 10px;
-}
-
-.cell {
-    width: 75px;
-    height: 75px;
-    background-image: linear-gradient(to bottom, var(--bg-tertiary-light), var(--bg-tertiary));
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    font-weight: bold;
-    color: var(--text-primary);
-    cursor: pointer;
-    user-select: none;
-    transition: background-image var(--transition-speed) ease, transform 0.1s ease, border-color var(--transition-speed) ease;
-}
-.cell:hover {
-     background-image: linear-gradient(to bottom, #4a5062, #3a4053);
-    border-color: #5a6073;
-}
-.cell:active {
-    transform: scale(0.95);
-}
-
-.cell.mine-predicted {
-    background-image: none;
-    background-color: rgba(255, 107, 107, 0.15);
-    border-color: rgba(255, 107, 107, 0.4);
-}
-
-.cell.mine-predicted::after {
-    content: '💣';
-    font-size: 1em;
-    color: var(--accent-red);
-    line-height: 1;
-    text-align: center;
-    animation: bounce 0.6s ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-
-/* ==================== Стили для секции Авиатор ==================== */
-#aviator-section {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-#aviator-game-logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 25px;
-}
-
-#aviator-timer-display {
-    margin-bottom: 15px;
-    height: 30px;
-}
-
-#aviator-timer {
-    font-size: 1.5em;
+.generate-button {
+    padding: var(--control-padding-vertical) var(--control-padding-horizontal);
+    line-height: var(--control-line-height);
+    box-sizing: border-box;
+    border: 1px solid var(--accent-blue);
+    border-radius: 6px;
+    font-size: var(--control-font-size);
+    background-color: var(--accent-blue);
+    color: white;
     font-weight: 500;
-    color: var(--timer-color);
-    font-variant-numeric: tabular-nums;
+    margin-top: 20px;
+    transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease, transform 0.1s ease;
+}
+.generate-button:hover { background-color: var(--accent-blue-hover); border-color: var(--accent-blue-hover); }
+.generate-button:active { transform: scale(0.97); }
+
+/* Остальные стили для мин */
+.game-board { display: grid; grid-template-columns: repeat(5, 75px); grid-template-rows: repeat(5, 75px); gap: 6px; margin-top: 15px; width: fit-content; border: none; padding: 6px; background-color: var(--bg-secondary); border-radius: 10px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 10px var(--shadow-color); }
+.cell { width: 75px; height: 75px; background-image: linear-gradient(to bottom, var(--bg-tertiary-light), var(--bg-tertiary)); border: 1px solid var(--border-color); border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 2em; font-weight: bold; color: var(--text-primary); cursor: pointer; user-select: none; transition: background-image var(--transition-speed) ease, transform 0.1s ease, border-color var(--transition-speed) ease; position: relative; overflow: hidden; }
+.cell:hover { background-image: linear-gradient(to bottom, #4a5062, #3a4053); border-color: #5a6073; transform: translateY(-2px); }
+.cell:active { transform: scale(0.95); }
+.cell.mine-predicted { background-image: none; background-color: rgba(231, 76, 60, 0.15); border: 2px solid var(--accent-red); }
+.cell.mine-predicted::after { content: '💣'; display: block; font-size: 1em; color: var(--accent-red); line-height: 1; text-align: center; animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+/* ----- Стили Краш-игр ----- */
+.section-game-logo { width: 180px; height: auto; margin-bottom: 25px; }
+.timer-display { margin-bottom: 15px; height: 30px; }
+.timer-span { font-size: 1.5em; font-weight: 500; color: var(--timer-color); font-variant-numeric: tabular-nums; }
+.result-display { background-color: var(--bg-tertiary); border-radius: 12px; padding: 25px 40px; display: inline-block; border: 1px solid var(--border-color); box-shadow: 0 5px 15px var(--shadow-color); transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; }
+.result-span { font-size: 4.5em; font-weight: 700; color: var(--result-default); text-shadow: 0 0 10px var(--result-glow); line-height: 1; display: inline-block; transition: transform 0.3s ease-out, opacity 0.3s ease-out, color var(--transition-speed) ease, text-shadow var(--transition-speed) ease; min-width: 150px; text-align: center; }
+.result-span.updating { transform: translateY(-15px) scale(0.9); opacity: 0; }
+.speedcash-results-container { display: flex; justify-content: center; align-items: stretch; gap: 20px; flex-wrap: wrap; width: 100%; margin-bottom: 15px; }
+.car-result { padding: 20px 25px; display: flex; flex-direction: column; align-items: center; }
+.car-result .result-span { font-size: 3.5em; min-width: 120px; }
+.car-label { margin-top: 8px; font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+.blue-car .result-span { color: var(--accent-blue); text-shadow: 0 0 10px var(--blue-glow); }
+.orange-car .result-span { color: var(--accent-orange); text-shadow: 0 0 10px var(--orange-glow); }
+#luckyjet-result.result-span { color: var(--luckyjet-purple); text-shadow: 0 0 10px var(--purple-glow); }
+.jetx-color { color: var(--jetx-yellow); text-shadow: 0 0 10px var(--yellow-glow); }
+
+/* ----- Настройки ----- */
+#settings-section { justify-content: flex-start; padding-top: 5vh; gap: 25px; }
+.settings-group { width: 100%; max-width: 400px; text-align: left; }
+.settings-group h4 { text-align: left; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid var(--border-color); }
+.settings-item { margin-bottom: 10px; }
+.theme-switch { position: relative; display: inline-flex; align-items: center; height: 34px; cursor: pointer; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.theme-switch .slider { position: relative; display: block; width: 60px; height: 34px; background-color: var(--bg-tertiary-light); transition: var(--transition-speed); border-radius: 34px; }
+.theme-switch .slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: var(--bg-secondary); transition: var(--transition-speed); border-radius: 50%; }
+.theme-switch input:checked + .slider { background-color: var(--accent-blue); }
+.theme-switch input:checked + .slider:before { transform: translateX(26px); }
+.theme-switch .theme-label { margin-left: 15px; font-family: var(--theme-label-font); font-weight: 600; color: var(--text-primary); }
+.settings-button, .settings-item.agreement { background-color: var(--bg-tertiary); padding: 12px 20px; border-radius: 8px; cursor: pointer; transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; border: 1px solid var(--border-color); display: block; width: 100%; box-sizing: border-box; text-align: center; font-size: 0.95rem; color: var(--text-primary); }
+.settings-button:hover, .settings-item.agreement:hover { background-color: var(--bg-tertiary-light); border-color: var(--text-secondary); }
+.settings-item a { color: var(--text-primary); font-weight: 500; font-size: 1rem; }
+#how-it-works-button { margin-top: 10px; }
+.how-it-works { background-color: var(--bg-secondary); padding: 0 15px; border-radius: 8px; border: 1px solid var(--border-color); margin-top: 10px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding 0.4s ease-out, margin 0.4s ease-out; }
+.how-it-works.active { max-height: 500px; opacity: 1; padding: 15px; margin-top: 10px; }
+.how-it-works p { margin: 0 0 10px 0; font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); }
+.how-it-works p:last-child { margin-bottom: 0; }
+.how-it-works strong { color: var(--text-primary); }
+.disclaimer { font-size: 0.8rem; color: var(--text-secondary); text-align: center; max-width: 90%; line-height: 1.4; margin-top: 30px; }
+
+/* ----- Панель Истории ----- */
+#history-panel { width: var(--history-width-desktop); flex-shrink: 0; height: 100%; background-color: var(--bg-secondary); border-left: 1px solid var(--border-color); padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; transition: background-color var(--transition-speed) ease, border-color var(--transition-speed) ease; z-index: 10; overflow: hidden; }
+#history-panel h4 { flex-shrink: 0; margin-bottom: 10px; font-size: 0.9rem; text-align: center; }
+#history-list { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column-reverse; list-style: none; margin: 0; padding: 0; gap: 6px; scrollbar-width: thin; scrollbar-color: var(--bg-tertiary-light) var(--bg-secondary); }
+#history-list::-webkit-scrollbar { width: 6px; }
+#history-list::-webkit-scrollbar-track { background: var(--bg-secondary); }
+#history-list::-webkit-scrollbar-thumb { background-color: var(--bg-tertiary-light); border-radius: 3px; border: 1px solid var(--bg-secondary); }
+.history-item { background-color: var(--history-item-bg); padding: 6px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; animation: fadeIn 0.5s ease forwards; opacity: 0; border-left: 3px solid transparent; transition: background-color var(--transition-speed) ease; }
+.history-item:hover { background-color: var(--bg-tertiary); }
+.history-item span:first-child { color: var(--text-secondary); font-weight: 500; margin-right: 10px; white-space: nowrap; }
+.history-item span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+.history-aviator { border-left-color: var(--result-default); }
+.history-luckyjet { border-left-color: var(--luckyjet-purple); }
+.history-speedcash.blue { border-left-color: var(--accent-blue); }
+.history-speedcash.orange { border-left-color: var(--accent-orange); }
+.history-jetx { border-left-color: var(--jetx-yellow); }
+
+/* ----- Анимации ----- */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popIn { from { transform: scale(0.8); opacity: 0.5; } to { transform: scale(1); opacity: 1; } }
+
+/* ----- Адаптивность ----- */
+@media (max-width: 1024px) {
+    #history-panel { position: fixed; right: 0; top: var(--header-height); height: calc(100vh - var(--header-height) - 10px); width: var(--history-width-mobile); padding: 10px 8px; border-left: 1px solid var(--border-color); box-shadow: -3px 0 10px var(--shadow-color); z-index: 25; border-top: none; background-color: var(--bg-secondary); }
+    #history-panel h4 { font-size: 0.8rem; margin-bottom: 5px; }
+    #history-list { gap: 4px; }
+    .history-item { font-size: 0.75rem; padding: 4px 6px; }
+    .history-item span:first-child { margin-right: 5px; }
+    .main-content { padding-right: calc(var(--history-width-mobile) + 20px); }
 }
 
-#aviator-result-display {
-    background-color: var(--bg-tertiary);
-    border-radius: 12px;
-    padding: 25px 40px;
-    display: inline-block;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+@media (max-width: 767px) {
+    .app-body { flex-direction: column; height: auto; }
+    .sidebar { order: 2; width: 100%; border-right: none; border-top: 1px solid var(--border-color); padding: 0; flex-shrink: 0; height: var(--bottom-nav-height-mobile); overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; z-index: 20; }
+    .sidebar::-webkit-scrollbar { display: none; }
+    .sidebar nav { height: 100%; }
+    .sidebar nav ul { display: flex; height: 100%; width: max-content; padding: 0 5px; }
+    .sidebar .nav-item { flex-shrink: 0; height: 100%; }
+    .sidebar .nav-item a { padding: 0 10px; border-left: none; border-bottom: 4px solid transparent; flex-direction: column; font-size: 0.7rem; height: 100%; justify-content: center; min-width: 60px; }
+    .nav-icon { margin-right: 0; margin-bottom: 4px; width: 22px; height: 22px; }
+    .sidebar .nav-item.active-nav a { border-left-color: transparent; border-bottom-color: var(--accent-blue); background-color: transparent; color: var(--text-primary); }
+    .sidebar .nav-item a:hover { background-color: transparent; }
+
+    .main-content { order: 1; padding: 15px; height: calc(100vh - var(--header-height) - var(--bottom-nav-height-mobile)); padding-right: calc(var(--history-width-mobile) + 15px); }
+
+    #history-panel { bottom: var(--bottom-nav-height-mobile); height: auto; border-bottom: none; top: var(--header-height); }
+
+    .game-board { grid-template-columns: repeat(5, 1fr); gap: 4px; padding: 4px; width: 100%; max-width: 400px; box-sizing: border-box; }
+    .cell { display: flex; justify-content: center; align-items: center; width: 100%; aspect-ratio: 1 / 1; font-size: 1.6em; }
+    .cell.mine-predicted::after { font-size: 0.8em; }
+    .section-game-logo { width: 120px; margin-bottom: 20px; }
+    .result-display { padding: 15px 20px; }
+    .result-span { font-size: 2.8em; min-width: 100px; }
+    .timer-span { font-size: 1.3em; }
+    .car-result .result-span { font-size: 2.4em; min-width: 80px;}
+    .car-label { font-size: 0.8rem; }
+    #settings-section { padding-top: 3vh; gap: 20px; }
+    .settings-group { max-width: 100%; }
+    .settings-button, .settings-item.agreement a { font-size: 0.95rem; }
+    .how-it-works p { font-size: 0.85rem; }
+    .disclaimer { margin-top: 20px; max-width: 95%; }
 }
 
-#aviator-result {
-    font-size: 4.5em;
-    font-weight: 700;
-    color: var(--aviator-red);
-    text-shadow: 0 0 10px var(--aviator-glow);
-    line-height: 1;
-    display: inline-block;
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-}
-
-#aviator-result.updating {
-    transform: translateY(-15px) scale(0.9);
-    opacity: 0;
-}
-
-
-/* ==================== Стили для секции Настройки ==================== */
-#settings-section {
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 15%;
-}
-
-.settings-item.agreement {
-    background-color: var(--bg-tertiary);
-    padding: 15px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color var(--transition-speed) ease;
-    border: 1px solid var(--border-color);
-}
-
-.settings-item.agreement a {
-    color: var(--text-primary);
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.settings-item.agreement:hover {
-     background-color: var(--border-color);
-}
-
-.disclaimer {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    text-align: center;
-    max-width: 350px;
-    line-height: 1.4;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    padding-bottom: 10px;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0.5; }
-    70% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
+@media (max-width: 360px) {
+    :root { --history-width-mobile: 75px; }
+    .result-span { font-size: 2.4em; min-width: 80px; }
+    .car-result .result-span { font-size: 2em; min-width: 70px; }
+    .timer-span { font-size: 1.2em; }
+    .sidebar .nav-item a { min-width: 55px; padding: 0 8px;}
+    .nav-text { display: none; }
+    #history-panel { padding: 6px 5px; }
+    .history-item { padding: 3px 5px; font-size: 0.7rem;}
+    .history-item span:first-child { display: none; }
 }
