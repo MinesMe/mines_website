@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1win App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка теперь с контейнером для динамического контента -->
+    <header class="app-header">
+        <div id="header-content-container">
+            <!-- Контент будет вставлен сюда с помощью JavaScript -->
+            <!-- По умолчанию покажем логотип Мин, так как это первая секция -->
+            <img src="logo.png" alt="1win x Mines Logo" class="header-logo">
+        </div>
+    </header>
+
+    <div class="app-body">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <!-- Мины -->
+                    <li class="nav-item active-nav">
+                        <a href="#" data-section="mines">
+                            <img src="icon-mines.png" alt="Mines" class="nav-icon">
+                            <span class="nav-text">Мины</span>
+                        </a>
+                    </li>
+                    <!-- Авиатор -->
+                    <li class="nav-item">
+                        <a href="#" data-section="aviator">
+                             <img src="icon-aviator.png" alt="Aviator" class="nav-icon">
+                            <span class="nav-text">Авиатор</span>
+                        </a>
+                    </li>
+                     <!-- Настройки -->
+                    <li class="nav-item">
+                        <a href="#" data-section="settings">
+                           <img src="icon-settings.png" alt="Settings" class="nav-icon">
+                            <span class="nav-text">Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- ==================== Раздел Мины ==================== -->
+            <div id="mines-section" class="content-section active">
+                 <!-- Заголовок секции убран, т.к. он теперь в шапке -->
+                 <!-- <h2>Мины</h2> -->
+                 <div class="game-controls">
+                    <label for="mine-count">Количество мин:</label>
+                    <select id="mine-count">
+                        <option value="2">2</option>
+                        <option value="3" selected>3</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                    </select>
+                    <button id="predict-button">Сгенерировать Прогноз</button>
+                </div>
+                <h3>Игровое поле (5x5)</h3>
+                <div id="game-board" class="game-board">
+                    <!-- Ячейки поля будут сгенерированы JavaScript -->
+                </div>
+            </div>
+
+            <!-- ==================== Раздел Авиатор ==================== -->
+            <div id="aviator-section" class="content-section">
+                <!-- Заголовок секции убран -->
+                <!-- <h2>Авиатор</h2> -->
+                 <img src="aviator-game-logo.png" alt="Aviator Game Logo" id="aviator-game-logo">
+                <div id="aviator-timer-display">
+                    <span id="aviator-timer">20.0s</span>
+                </div>
+                <div id="aviator-result-display">
+                     <span id="aviator-result">1.00x</span>
+                </div>
+            </div>
+
+            <!-- ==================== Раздел Настройки ==================== -->
+            <div id="settings-section" class="content-section">
+                 <!-- Заголовок секции убран -->
+                 <!-- <h2>Настройки</h2> -->
+                 <div class="settings-item agreement">
+                     <a href="#">Пользовательское соглашение</a>
+                 </div>
+                 <p class="disclaimer">
+                     Значения и прогнозы являются случайными и не имеют отношения к реальным ставкам.
+                 </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

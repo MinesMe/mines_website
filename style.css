@@ -1,0 +1,410 @@
+/* Общие стили и Темная тема */
+:root {
+    --bg-primary: #1a1d2a;
+    --bg-secondary: #212534;
+    --bg-tertiary: #2b3040;
+    --bg-tertiary-light: #353a4a;
+    --border-color: #3a4053;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a8bA;
+    --text-white: #ffffff;
+    --accent-blue: #007bff;
+    --accent-blue-hover: #0056b3;
+    --accent-red: #ff6b6b;
+    --aviator-red: #ff4757;
+    --aviator-glow: rgba(255, 71, 87, 0.5);
+    --timer-color: #f5bd4f;
+    --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --transition-speed: 0.25s;
+    --header-height: 55px; /* Высота шапки */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h3 { /* Оставляем заголовок "Игровое поле" */
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Шапка */
+.app-header {
+    background-color: var(--bg-tertiary);
+    height: var(--header-height);
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#header-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Общий стиль для контента в шапке */
+.header-logo, #header-text {
+    max-height: 80%; /* Макс высота 80% от шапки */
+    max-width: 90%; /* Макс ширина 90% от шапки */
+    object-fit: contain; /* Масштабирование с сохранением пропорций */
+}
+
+/* Общий стиль для логотипов */
+.header-logo {
+    width: auto; /* Ширина авто по умолчанию */
+    height: auto; /* Высота авто по умолчанию */
+}
+
+/* ---- ИЗМЕНЕНИЕ ЗДЕСЬ ---- */
+/* Отдельный стиль для логотипа Авиатора в шапке, чтобы сделать его шире */
+#header-aviator-img {
+    width: 220px; /* Задаем конкретную ширину (подбери значение) */
+    /* height: auto; унаследовано */
+    /* max-height унаследовано */
+}
+/* ---- КОНЕЦ ИЗМЕНЕНИЯ ---- */
+
+
+/* Стиль для текстового заголовка в шапке */
+#header-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin: 0;
+    line-height: var(--header-height);
+}
+
+
+/* Основное тело */
+.app-body {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* Сайдбар - Навигация */
+.sidebar {
+    width: 240px;
+    background-color: var(--bg-secondary);
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.sidebar nav ul {
+    width: 100%;
+}
+
+.sidebar .nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-left: 4px solid transparent;
+    transition: background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease,
+                border-left-color var(--transition-speed) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar .nav-item a:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-white);
+}
+
+.sidebar .nav-item.active-nav a {
+    color: var(--text-white);
+    background-color: var(--bg-tertiary);
+    border-left-color: var(--accent-blue);
+}
+
+.nav-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    object-fit: contain;
+    vertical-align: middle;
+    transition: transform var(--transition-speed) ease;
+}
+.sidebar .nav-item.active-nav a .nav-icon {
+    transform: scale(1.1);
+}
+
+.nav-text {
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+/* Основной контент */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: var(--bg-primary);
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Секции контента и Анимация */
+.content-section {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: var(--main-padding, 20px);
+    left: var(--main-padding, 20px);
+    right: var(--main-padding, 20px);
+    bottom: var(--main-padding, 20px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    transition: opacity var(--transition-speed) ease-out,
+                visibility var(--transition-speed) ease-out,
+                transform var(--transition-speed) ease-out;
+    pointer-events: none;
+    --main-padding: 20px;
+}
+
+.content-section.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    z-index: 1;
+}
+
+/* ==================== Стили для секции Мины ==================== */
+#mines-section {
+    align-items: center;
+     padding-top: 20px;
+}
+
+.game-controls {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.game-controls label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.game-controls select,
+.game-controls button {
+    padding: 9px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+.game-controls select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a0a8bA'%3E%3Cpath d='M6 8.825l-4.412-4.413L0 6l6 6 6-6-1.588-1.588z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+}
+
+.game-controls button {
+    background-color: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.game-controls button:hover {
+    background-color: var(--accent-blue-hover);
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 75px);
+    grid-template-rows: repeat(5, 75px);
+    gap: 6px;
+    margin-top: 15px;
+    width: fit-content;
+    border: none;
+    padding: 6px;
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+}
+
+.cell {
+    width: 75px;
+    height: 75px;
+    background-image: linear-gradient(to bottom, var(--bg-tertiary-light), var(--bg-tertiary));
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--text-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: background-image var(--transition-speed) ease, transform 0.1s ease, border-color var(--transition-speed) ease;
+}
+.cell:hover {
+     background-image: linear-gradient(to bottom, #4a5062, #3a4053);
+    border-color: #5a6073;
+}
+.cell:active {
+    transform: scale(0.95);
+}
+
+.cell.mine-predicted {
+    background-image: none;
+    background-color: rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.4);
+}
+
+.cell.mine-predicted::after {
+    content: '💣';
+    font-size: 1em;
+    color: var(--accent-red);
+    line-height: 1;
+    text-align: center;
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+
+/* ==================== Стили для секции Авиатор ==================== */
+#aviator-section {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#aviator-game-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+#aviator-timer-display {
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+#aviator-timer {
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--timer-color);
+    font-variant-numeric: tabular-nums;
+}
+
+#aviator-result-display {
+    background-color: var(--bg-tertiary);
+    border-radius: 12px;
+    padding: 25px 40px;
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#aviator-result {
+    font-size: 4.5em;
+    font-weight: 700;
+    color: var(--aviator-red);
+    text-shadow: 0 0 10px var(--aviator-glow);
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+#aviator-result.updating {
+    transform: translateY(-15px) scale(0.9);
+    opacity: 0;
+}
+
+
+/* ==================== Стили для секции Настройки ==================== */
+#settings-section {
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 15%;
+}
+
+.settings-item.agreement {
+    background-color: var(--bg-tertiary);
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    border: 1px solid var(--border-color);
+}
+
+.settings-item.agreement a {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.settings-item.agreement:hover {
+     background-color: var(--border-color);
+}
+
+.disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 350px;
+    line-height: 1.4;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0.5; }
+    70% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
