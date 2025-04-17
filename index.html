@@ -13,7 +13,7 @@
 
     <header class="app-header">
         <div id="header-content-container">
-            <img src="logo.png" alt="App Logo" class="header-logo">
+            <img src="header-mines-logo.png" alt="Mines Logo" class="header-logo" id="header-mines-logo" onerror="this.onerror=null; this.src='logo-mines.png';">
         </div>
     </header>
 
@@ -21,137 +21,43 @@
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li class="nav-item active-nav"><a href="#" data-section="mines"><img src="icon-mines.png" alt="Mines" class="nav-icon"><span class="nav-text">Мины</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="aviator"><img src="icon-aviator.png" alt="Aviator" class="nav-icon"><span class="nav-text">Авиатор</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="luckyjet"><img src="icon-luckyjet.png" alt="Lucky Jet" class="nav-icon"><span class="nav-text">Lucky Jet</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="speedcash"><img src="icon-speedcash.png" alt="Speed & Cash" class="nav-icon"><span class="nav-text">Speed & Cash</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="jetx"><img src="icon-jetx.png" alt="JetX" class="nav-icon"><span class="nav-text">JetX</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="keno"><img src="icon-keno.png" alt="Keno" class="nav-icon"><span class="nav-text">Keno</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="plinko"><img src="icon-plinko.png" alt="Plinko" class="nav-icon"><span class="nav-text">Plinko</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="coinflip"><img src="icon-coinflip.png" alt="Coinflip" class="nav-icon"><span class="nav-text">Coinflip</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="double"><img src="icon-double.png" alt="Double" class="nav-icon"><span class="nav-text">Double</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="dice"><img src="icon-dice.png" alt="Dice" class="nav-icon"><span class="nav-text">Dice</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="hilo"><img src="icon-hilo.png" alt="Hilo" class="nav-icon"><span class="nav-text">Hilo</span></a></li>
-                    <li class="nav-item"><a href="#" data-section="settings"><img src="icon-settings.png" alt="Settings" class="nav-icon"><span class="nav-text">Настройки</span></a></li>
+                    <li class="nav-item active-nav"><a href="#" data-section="mines"><img src="icon-mines.png" alt="Mines" class="nav-icon"><span class="nav-text" data-translate-key="nav.mines">Мины</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="penalty"><img src="icon-penalty.png" alt="Penalty" class="nav-icon"><span class="nav-text" data-translate-key="nav.penalty">Penalty</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="crash"><img src="icon-crash.png" alt="Crash" class="nav-icon"><span class="nav-text" data-translate-key="nav.crash">Crash</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="rocketqueen"><img src="icon-rocketqueen.png" alt="Rocket Queen" class="nav-icon"><span class="nav-text" data-translate-key="nav.rocketqueen">Rocket Queen</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="aviator"><img src="icon-aviator.png" alt="Aviator" class="nav-icon"><span class="nav-text" data-translate-key="nav.aviator">Авиатор</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="luckyjet"><img src="icon-luckyjet.png" alt="Lucky Jet" class="nav-icon"><span class="nav-text" data-translate-key="nav.luckyjet">Lucky Jet</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="speedcash"><img src="icon-speedcash.png" alt="Speed & Cash" class="nav-icon"><span class="nav-text" data-translate-key="nav.speedcash">Speed & Cash</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="jetx"><img src="icon-jetx.png" alt="JetX" class="nav-icon"><span class="nav-text" data-translate-key="nav.jetx">JetX</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="keno"><img src="icon-keno.png" alt="Keno" class="nav-icon"><span class="nav-text" data-translate-key="nav.keno">Keno</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="plinko"><img src="icon-plinko.png" alt="Plinko" class="nav-icon"><span class="nav-text" data-translate-key="nav.plinko">Plinko</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="coinflip"><img src="icon-coinflip.png" alt="Coinflip" class="nav-icon"><span class="nav-text" data-translate-key="nav.coinflip">Coinflip</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="double"><img src="icon-double.png" alt="Double" class="nav-icon"><span class="nav-text" data-translate-key="nav.double">Double</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="dice"><img src="icon-dice.png" alt="Dice" class="nav-icon"><span class="nav-text" data-translate-key="nav.dice">Dice</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="hilo"><img src="icon-hilo.png" alt="Hilo" class="nav-icon"><span class="nav-text" data-translate-key="nav.hilo">Hilo</span></a></li>
+                    <li class="nav-item"><a href="#" data-section="settings"><img src="icon-settings.png" alt="Settings" class="nav-icon"><span class="nav-text" data-translate-key="nav.settings">Настройки</span></a></li>
                 </ul>
             </nav>
         </aside>
 
         <main class="main-content">
-            <div id="mines-section" class="content-section active">
-                 <img src="logo-mines.png" alt="Mines Logo" class="section-game-logo">
-                 <div class="game-controls"><label for="mine-count">Количество мин:</label><select id="mine-count"><option value="2">2</option> <option value="3" selected>3</option> <option value="5">5</option> <option value="7">7</option></select><button id="mines-generate-button" class="generate-button">Сгенерировать Прогноз</button></div>
-                 <h3>Игровое поле (5x5)</h3><div id="mines-board" class="game-board"></div>
-                 <div class="history-container"><button class="history-toggle-button" data-target="mines-history-list">История ▼</button><ul id="mines-history-list" class="history-list"></ul></div>
-            </div>
-
-            <div id="aviator-section" class="content-section">
-                 <img src="logo-aviator.png" alt="Aviator Logo" class="section-game-logo">
-                 <div id="aviator-timer-display" class="timer-display"><span id="aviator-timer" class="timer-span">0.0s</span></div>
-                 <div id="aviator-result-display" class="result-display single-result"><span id="aviator-result" class="result-span">1.00x</span></div>
-                 <div class="history-container"><button class="history-toggle-button" data-target="aviator-history-list">История ▼</button><ul id="aviator-history-list" class="history-list"></ul></div>
-            </div>
-
-             <div id="luckyjet-section" class="content-section">
-                 <img src="logo-luckyjet.png" alt="Lucky Jet Logo" class="section-game-logo">
-                 <div id="luckyjet-timer-display" class="timer-display"><span id="luckyjet-timer" class="timer-span">0.0s</span></div>
-                 <div id="luckyjet-result-display" class="result-display single-result"><span id="luckyjet-result" class="result-span luckyjet-color">1.00x</span></div>
-                 <div class="history-container"><button class="history-toggle-button" data-target="luckyjet-history-list">История ▼</button><ul id="luckyjet-history-list" class="history-list"></ul></div>
-            </div>
-
-            <div id="speedcash-section" class="content-section">
-                 <img src="logo-speedcash.png" alt="Speed & Cash Logo" class="section-game-logo">
-                 <div id="speedcash-timer-display" class="timer-display"><span id="speedcash-timer" class="timer-span">0.0s</span></div>
-                 <div class="speedcash-results-container"><div id="speedcash-result-blue-display" class="result-display car-result blue-car"><span id="speedcash-result-blue" class="result-span">1.00x</span><div class="car-label">Blue Car</div></div><div id="speedcash-result-orange-display" class="result-display car-result orange-car"><span id="speedcash-result-orange" class="result-span">1.00x</span><div class="car-label">Orange Car</div></div></div>
-                  <div class="history-container"><button class="history-toggle-button" data-target="speedcash-history-list">История ▼</button><ul id="speedcash-history-list" class="history-list"></ul></div>
-           </div>
-
-            <div id="jetx-section" class="content-section">
-                 <img src="logo-jetx.png" alt="JetX Logo" class="section-game-logo">
-                 <div id="jetx-timer-display" class="timer-display"><span id="jetx-timer" class="timer-span">0.0s</span></div>
-                 <div id="jetx-result-display" class="result-display single-result"><span id="jetx-result" class="result-span jetx-color">1.00x</span></div>
-                  <div class="history-container"><button class="history-toggle-button" data-target="jetx-history-list">История ▼</button><ul id="jetx-history-list" class="history-list"></ul></div>
-           </div>
-
-            <div id="keno-section" class="content-section">
-                <img src="logo-keno.png" alt="Keno Logo" class="section-game-logo">
-                <h3>Счастливые номера Keno</h3>
-                <div id="keno-result-display" class="keno-numbers"></div>
-                <button id="keno-generate-button" class="generate-button">Сгенерировать Номера</button>
-                 <div class="history-container"><button class="history-toggle-button" data-target="keno-history-list">История ▼</button><ul id="keno-history-list" class="history-list"></ul></div>
-           </div>
-
-            <div id="plinko-section" class="content-section">
-                <img src="logo-plinko.png" alt="Plinko Logo" class="section-game-logo">
-                 <h3>Прогноз для Plinko</h3>
-                <div id="plinko-result-display" class="result-display single-result"><span id="plinko-result" class="result-span plinko-color">x1.0</span></div>
-                 <button id="plinko-generate-button" class="generate-button">Сгенерировать Прогноз</button>
-                 <div class="history-container"><button class="history-toggle-button" data-target="plinko-history-list">История ▼</button><ul id="plinko-history-list" class="history-list"></ul></div>
-            </div>
-
-            <div id="coinflip-section" class="content-section">
-                <img src="logo-coinflip.png" alt="Coinflip Logo" class="section-game-logo">
-                 <h3>Прогноз Coinflip</h3>
-                 <div id="coinflip-result-display" class="coinflip-result">
-                     <span id="coinflip-result" class="coinflip-text">?</span>
-                 </div>
-                 <button id="coinflip-generate-button" class="generate-button">Подбросить Монету</button>
-                 <div class="history-container"><button class="history-toggle-button" data-target="coinflip-history-list">История ▼</button><ul id="coinflip-history-list" class="history-list"></ul></div>
-            </div>
-
-            <div id="double-section" class="content-section">
-                 <img src="logo-double.png" alt="Double Logo" class="section-game-logo">
-                <div id="double-timer-display" class="timer-display"><span id="double-timer" class="timer-span">15.0s</span></div>
-                <h3>Прогноз для Double</h3>
-                <div id="double-result-display" class="double-result">
-                     <span id="double-result" class="double-color-indicator">?</span>
-                </div>
-                 <div class="history-container"><button class="history-toggle-button" data-target="double-history-list">История ▼</button><ul id="double-history-list" class="history-list"></ul></div>
-           </div>
-
-            <div id="dice-section" class="content-section">
-                 <img src="logo-dice.png" alt="Dice Logo" class="section-game-logo">
-                 <h3>Прогноз для Dice</h3>
-                 <div id="dice-result-display" class="dice-result">
-                     <span id="dice-result">Больше 50.50?</span>
-                 </div>
-                 <button id="dice-generate-button" class="generate-button">Сгенерировать Прогноз</button>
-                 <div class="history-container"><button class="history-toggle-button" data-target="dice-history-list">История ▼</button><ul id="dice-history-list" class="history-list"></ul></div>
-            </div>
-
-            <div id="hilo-section" class="content-section">
-                 <img src="logo-hilo.png" alt="Hilo Logo" class="section-game-logo">
-                 <h3>Прогноз для HiLo</h3>
-                 <div id="hilo-current-card-display" class="hilo-card">?</div>
-                 <div id="hilo-prediction-display" class="hilo-prediction">
-                     <span id="hilo-prediction">?</span>
-                 </div>
-                 <button id="hilo-generate-button" class="generate-button">Новая карта и прогноз</button>
-                  <div class="history-container"><button class="history-toggle-button" data-target="hilo-history-list">История ▼</button><ul id="hilo-history-list" class="history-list"></ul></div>
-           </div>
-
-            <div id="settings-section" class="content-section">
-                 <div class="settings-group">
-                     <h4>Внешний вид</h4>
-                     <label class="theme-switch" for="theme-checkbox">
-                         <input type="checkbox" id="theme-checkbox">
-                         <span class="slider round"></span>
-                         <span class="theme-label">Переключить тему</span>
-                     </label>
-                 </div>
-                 <div class="settings-group">
-                     <h4>Информация</h4>
-                    <div class="settings-item agreement"><a href="#">Пользовательское соглашение</a></div>
-                    {/* Убрана кнопка и блок "Как это работает" */}
-                 </div>
-                 <p class="disclaimer">Значения и прогнозы являются случайными и не имеют отношения к реальным ставкам.</p>
-            </div>
+             <div id="mines-section" class="content-section active"> <img src="logo-mines.png" alt="Mines Logo" class="section-game-logo"> <div class="game-controls"> <label for="mine-count" data-translate-key="mines.mineCountLabel">Количество мин:</label> <select id="mine-count"><option value="5" selected>5</option> <option value="7">7</option></select> <button id="mines-generate-button" class="generate-button" data-translate-key="mines.generateButton">Сделать Прогноз</button> </div> <div id="mines-analysis-indicator" style="display: none; margin-bottom: 15px;"> <div id="mines-analysis-label" class="analysis-label" data-translate-key="mines.analysisLabel">ИИ анализирует...</div> <div id="mines-progress-container" class="progress-container"><div id="mines-progress-bar" class="progress-bar"></div></div> </div> <h3 data-translate-key="mines.title">Игровое поле (5x5)</h3><div id="mines-board" class="game-board"></div> </div>
+             <div id="penalty-section" class="content-section"> <img src="logo-penalty.png" alt="Penalty Logo" class="section-game-logo"> <div class="game-controls"> <button id="penalty-generate-button" class="generate-button" data-translate-key="penalty.generateButton">Сделать Прогноз</button> </div> <div id="penalty-analysis-indicator" style="display: none; margin-bottom: 15px;"> <div id="penalty-analysis-label" class="analysis-label" data-translate-key="penalty.analysisLabel">ИИ выбирает точку...</div> <div id="penalty-progress-container" class="progress-container"><div id="penalty-progress-bar" class="progress-bar"></div></div> </div> <h3 data-translate-key="penalty.title">Точки для удара</h3> <div id="penalty-board" class="penalty-goal-area"></div> </div>
+             <div id="crash-section" class="content-section"> <img src="logo-crash.png" alt="Crash Logo" class="section-game-logo"> <div id="crash-timer-display" class="timer-display"><span id="crash-timer" class="timer-span">0.0s</span></div> <div id="crash-result-display" class="result-display single-result"><span id="crash-result" class="result-span crash-color">1.00x</span></div> </div>
+             <div id="rocketqueen-section" class="content-section"> <img src="logo-rocketqueen.png" alt="Rocket Queen Logo" class="section-game-logo"> <div id="rocketqueen-timer-display" class="timer-display"><span id="rocketqueen-timer" class="timer-span">0.0s</span></div> <div id="rocketqueen-result-display" class="result-display single-result"><span id="rocketqueen-result" class="result-span rocketqueen-color">1.00x</span></div> </div>
+             <div id="aviator-section" class="content-section"> <img src="logo-aviator.png" alt="Aviator Logo" class="section-game-logo"> <div id="aviator-timer-display" class="timer-display"><span id="aviator-timer" class="timer-span">0.0s</span></div> <div id="aviator-result-display" class="result-display single-result"><span id="aviator-result" class="result-span">1.00x</span></div> </div>
+             <div id="luckyjet-section" class="content-section"> <img src="logo-luckyjet.png" alt="Lucky Jet Logo" class="section-game-logo"> <div id="luckyjet-timer-display" class="timer-display"><span id="luckyjet-timer" class="timer-span">0.0s</span></div> <div id="luckyjet-result-display" class="result-display single-result"><span id="luckyjet-result" class="result-span luckyjet-color">1.00x</span></div> </div>
+             <div id="speedcash-section" class="content-section"> <img src="logo-speedcash.png" alt="Speed & Cash Logo" class="section-game-logo"> <div id="speedcash-timer-display" class="timer-display"><span id="speedcash-timer" class="timer-span">0.0s</span></div> <div class="speedcash-results-container"><div id="speedcash-result-blue-display" class="result-display car-result blue-car"><span id="speedcash-result-blue" class="result-span">1.00x</span><div class="car-label">Blue Car</div></div><div id="speedcash-result-orange-display" class="result-display car-result orange-car"><span id="speedcash-result-orange" class="result-span">1.00x</span><div class="car-label">Orange Car</div></div></div> </div>
+             <div id="jetx-section" class="content-section"> <img src="logo-jetx.png" alt="JetX Logo" class="section-game-logo"> <div id="jetx-timer-display" class="timer-display"><span id="jetx-timer" class="timer-span">0.0s</span></div> <div id="jetx-result-display" class="result-display single-result"><span id="jetx-result" class="result-span jetx-color">1.00x</span></div> </div>
+             <div id="keno-section" class="content-section"> <img src="logo-keno.png" alt="Keno Logo" class="section-game-logo"> <div class="game-options keno-options"> <div class="option-group"> <label for="keno-number-count" data-translate-key="keno.numberCountLabel">Кол-во номеров:</label> <select id="keno-number-count"><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10" selected>10</option></select> </div> </div> <button id="keno-generate-button" class="generate-button" data-translate-key="keno.generateButton">Сделать Прогноз</button> <div id="keno-analysis-indicator" style="display: none; margin: 20px auto;"> <div id="keno-analysis-label" class="analysis-label" data-translate-key="keno.analysisLabel">ИИ делает прогноз...</div> <div id="keno-progress-container" class="progress-container"><div id="keno-progress-bar" class="progress-bar"></div></div> </div> <div id="keno-result-display" class="keno-numbers" style="margin-top: 20px;"></div> </div>
+             <div id="plinko-section" class="content-section"> <img src="logo-plinko.png" alt="Plinko Logo" class="section-game-logo"> <div class="game-options plinko-options"> <div class="option-group"> <label for="plinko-preset" data-translate-key="plinko.presetLabel">Пресет:</label> <select id="plinko-preset"> <option value="balance" selected data-translate-key="plinko.presetBalance">Баланс</option> <option value="extreme" data-translate-key="plinko.presetExtreme">Экстрим</option> </select> </div> <div class="option-group"> <label for="plinko-risk" data-translate-key="plinko.riskLabel">Риск:</label> <select id="plinko-risk"> <option value="high" selected data-translate-key="plinko.riskHigh">Высокий</option> <option value="extreme" data-translate-key="plinko.riskExtreme">Экстрим</option> </select> </div> <div class="option-group"> <label for="plinko-row-count" data-translate-key="plinko.rowCountLabel">Ряды:</label> <select id="plinko-row-count"> <option value="10">10</option> <option value="11">11</option> <option value="12" selected>12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> </select> </div> <div class="option-group"> <label for="plinko-ball-count" data-translate-key="plinko.ballCountLabel">Кол-во шаров:</label> <select id="plinko-ball-count"> <option value="25">25</option> <option value="50" selected>50</option> <option value="100">100</option> </select> </div> </div> <button id="plinko-generate-button" class="generate-button" data-translate-key="plinko.generateButton">Сделать Прогноз</button> <div id="plinko-analysis-indicator" style="display: none; margin: 20px auto;"> <div id="plinko-analysis-label" class="analysis-label" data-translate-key="plinko.analysisLabel">ИИ рассчитывает...</div> <div id="plinko-progress-container" class="progress-container"><div id="plinko-progress-bar" class="progress-bar"></div></div> </div> <h3 data-translate-key="plinko.title">Прогноз для Plinko</h3> <div id="plinko-ball-result-display" class="result-display single-result plinko-result-text" style="display: none;"> <span id="plinko-ball-result-text">Шаров > 1x: ?</span> </div> </div>
+             <div id="coinflip-section" class="content-section"> <img src="logo-coinflip.png" alt="Coinflip Logo" class="section-game-logo"> <h3 data-translate-key="coinflip.title">Прогноз Coinflip</h3> <div id="coinflip-result-display" class="coinflip-result"><span id="coinflip-result" class="coinflip-text">?</span></div> <button id="coinflip-generate-button" class="generate-button" data-translate-key="coinflip.generateButton">Подбросить Монету</button> </div>
+             <div id="double-section" class="content-section"> <img src="logo-double.png" alt="Double Logo" class="section-game-logo"> <div id="double-timer-display" class="timer-display"><span id="double-timer" class="timer-span">15.0s</span></div> <h3 data-translate-key="double.title">Прогноз для Double</h3> <div id="double-result-display" class="double-result"> <span id="double-result" class="double-color-indicator"><img src="star-icon.png" alt="Star" class="double-star-icon" style="display: none;"></span></div> <p id="double-result-text" class="double-result-label" data-translate-key="double.resultWaiting">Ожидание...</p> </div>
+             <div id="dice-section" class="content-section"> <img src="logo-dice.png" alt="Dice Logo" class="section-game-logo"> <h3 data-translate-key="dice.title">Прогноз для Dice</h3> <div id="dice-analysis-indicator" style="display: none; margin: 20px auto;"> <div id="dice-analysis-label" class="analysis-label" data-translate-key="dice.analysisLabel">ИИ бросает кости...</div> <div id="dice-progress-container" class="progress-container"><div id="dice-progress-bar" class="progress-bar"></div></div> </div> <div id="dice-result-display" class="dice-result-styled" style="display: none;"> <span id="dice-result-number">?</span> <span id="dice-result-prediction"> <span class="dice-prediction-text">?</span> <span class="dice-arrow">?</span> </span> </div> <button id="dice-generate-button" class="generate-button" data-translate-key="dice.generateButton">Сделать Прогноз</button> </div>
+             <div id="hilo-section" class="content-section"> <img src="logo-hilo.png" alt="Hilo Logo" class="section-game-logo"> <div class="game-options hilo-options"> <div class="option-group"> <label for="hilo-suit-select" data-translate-key="hilo.optionsSuitLabel">Масть:</label> <select id="hilo-suit-select"> <option value="♦️">♦️</option> <option value="♥️">♥️</option> <option value="♣️">♣️</option> <option value="♠️">♠️</option> </select> </div> <div class="option-group"> <label for="hilo-rank-select" data-translate-key="hilo.optionsRankLabel">Карта:</label> <select id="hilo-rank-select"> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7" selected>7</option> <option value="8">8</option> <option value="9">9</option> <option value="T">10</option> <option value="J">J</option> <option value="Q">Q</option> <option value="K">K</option> <option value="A">A</option> </select> </div> </div> <h3 data-translate-key="hilo.currentCardTitle">Текущая карта</h3> <div id="hilo-current-card-display" class="hilo-card-styled"><span class="hilo-card-rank">?</span><span class="hilo-card-suit">?</span></div> <div id="hilo-prediction-display" class="hilo-prediction" style="display: none;" data-translate-key="hilo.predictionTitle">Прогноз: <span id="hilo-prediction">?</span></div> <div id="hilo-analysis-indicator" style="display: none; margin-bottom: 15px; margin-top: 15px;"> <div id="hilo-analysis-label" class="analysis-label" data-translate-key="hilo.analysisLabel">ИИ анализирует...</div> <div id="hilo-progress-container" class="progress-container"><div id="hilo-progress-bar" class="progress-bar"></div></div> </div> <button id="hilo-generate-button" class="generate-button hilo-button" data-translate-key="hilo.generateButton">Сделать Прогноз</button> </div>
+             <div id="settings-section" class="content-section"> <div class="settings-group"><h4 data-translate-key="settings.appearanceTitle">Внешний вид</h4><label class="theme-switch" for="theme-checkbox"><input type="checkbox" id="theme-checkbox"><span class="slider round"></span><span class="theme-label" data-translate-key="settings.themeSwitchLabel">Переключить тему</span></label></div> <div class="settings-group"><h4 data-translate-key="settings.infoTitle">Информация</h4><div class="settings-item agreement"><a href="#" data-translate-key="settings.agreementLink">Пользовательское соглашение</a></div></div> <p class="disclaimer bottom-disclaimer" data-translate-key="settings.disclaimer">Значения и прогнозы являются случайными и не имеют отношения к реальным ставкам.</p> </div>
         </main>
-
-        {/* Убрана общая панель истории */}
-
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
