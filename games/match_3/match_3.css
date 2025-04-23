@@ -26,20 +26,23 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border: 1px solid var(--border-color);
     text-align: center; width: 95%; max-width: 420px; position: relative;
     display: flex; flex-direction: column;
+    /* Limit height to prevent overflow */
+    max-height: 95vh;
 }
 
 .match3-header {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 20px; padding: 8px 15px; background-color: var(--surface-dark);
+    margin-bottom: 15px; /* Reduced margin */ padding: 8px 15px; background-color: var(--surface-dark);
     border-radius: 12px; color: var(--text-primary); font-weight: bold;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
-.score-display { font-size: 1.15em; font-weight: 700; }
+.score-display { font-size: 1.1em; /* Reduced size */ font-weight: 700; }
 .score-display span { color: var(--primary-accent-hover); }
 
 #restart-match3, #play-again-match3 {
-    padding: 9px 18px; font-size: 0.95em; cursor: pointer; background-color: var(--primary-accent);
+    padding: 8px 15px; /* Adjusted padding */ font-size: 0.9em; /* Adjusted size */ cursor: pointer; background-color: var(--primary-accent);
     color: #ffffff; border: none; border-radius: 10px;
     transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s; font-weight: 600;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -48,33 +51,69 @@ body {
 #restart-match3:active, #play-again-match3:active { transform: scale(0.97) translateY(0px); box-shadow: inset 0 1px 2px rgba(0,0,0,0.3); }
 
 .match3-grid {
-    display: grid; gap: 4px; padding: 10px; background-color: #1f2b3d;
-    border-radius: 14px; border: 1px solid #2c3e50; aspect-ratio: 1 / 1;
-    width: 100%; max-width: 380px; margin: 0 auto; overflow: hidden; position: relative;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    display: grid; /* Keep grid for basic structure, items positioned absolutely */
+    gap: 4px; padding: 8px; /* Reduced padding */ background-color: #1f2b3d;
+    border-radius: 12px; /* Adjusted radius */ border: 1px solid #2c3e50; aspect-ratio: 1 / 1;
+    width: 100%; max-width: 360px; /* Slightly reduced max-width */ margin: 0 auto 15px auto; /* Adjusted margin */ overflow: hidden; position: relative;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.25); /* Adjusted shadow */
+    flex-shrink: 0; /* Prevent shrinking */
+    flex-grow: 1; /* Allow grid to take space but maintain aspect ratio */
 }
 
 .match3-item {
-    width: 100%; height: 100%; border-radius: 10px; background-size: 90%;
-    background-repeat: no-repeat; background-position: center; cursor: pointer;
+    /* Width/Height set by JS based on grid size */
+    border-radius: 8px; /* Adjusted radius */ background-size: 85%; /* Slightly smaller image */
+    background-repeat: no-repeat; background-position: center; cursor: grab; /* Use grab cursor */
+    /* Transitions for movement and effects */
     transition: transform 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55),
-                top 0.3s cubic-bezier(0.4, 0, 0.2, 1), left 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                top 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                left 0.25s cubic-bezier(0.4, 0, 0.2, 1), /* Adjusted bezier */
                 opacity 0.3s ease, box-shadow 0.2s ease;
-    position: absolute; will-change: transform, top, opacity;
+    position: absolute; /* Essential for JS positioning */
+    will-change: transform, top, opacity; /* Performance hint */
+    box-shadow: inset 0 0 3px rgba(255,255,255,0.1); /* Subtle inset shadow */
+}
+.match3-item:active { cursor: grabbing; } /* Change cursor during drag */
+
+.match3-item.selected { /* Style removed, handled by transform in JS now */
+    /* transform: scale(1.08); */ /* Handled by JS pointerdown */
+    /* box-shadow: 0 0 0 4px rgba(93, 173, 226, 0.8); */ /* Keep potential shadow if desired */
+    /* z-index: 10; */ /* Set by JS */
+}
+.match3-item.matched {
+    animation: pop-effect 0.4s ease-out forwards;
+    z-index: 5; /* Ensure matched items are above others during animation */
+}
+@keyframes pop-effect {
+    0% { transform: scale(1.05); opacity: 1; }
+    40% { transform: scale(1.2) rotate(10deg); opacity: 0.8; }
+    100% { transform: scale(0.2) rotate(-20deg); opacity: 0; }
 }
 
-.match3-item.selected { transform: scale(1.08); box-shadow: 0 0 0 4px rgba(93, 173, 226, 0.8); z-index: 10; }
-.match3-item.matched { animation: pop-effect 0.4s ease-out forwards; z-index: 5; }
-@keyframes pop-effect { 0% { transform: scale(1.05); opacity: 1; } 40% { transform: scale(1.2) rotate(10deg); opacity: 0.8; } 100% { transform: scale(0.2) rotate(-20deg); opacity: 0; } }
+/* --- ПУТИ К КАРТИНКАМ --- */
+/* Используйте ОДИН из этих блоков, в зависимости от структуры папок */
 
-/* Классы для картинок */
+/* ВАРИАНТ 1: Если папка 'images' находится ВНУТРИ 'games/match_3/' */
 .item-type-0 { background-image: url('images/pear.png'); }
 .item-type-1 { background-image: url('images/flower.png'); }
 .item-type-2 { background-image: url('images/leaf.png'); }
 .item-type-3 { background-image: url('images/blackberry.png'); }
 .item-type-4 { background-image: url('images/strawberry.png'); }
 
-.game-over-match3 { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(26, 37, 58, 0.95); backdrop-filter: blur(5px); color: var(--text-primary); padding: 30px; border-radius: 15px; z-index: 100; width: 85%; max-width: 320px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+/* ВАРИАНТ 2: Если папка 'images' находится В КОРНЕ проекта (рядом с index.html) */
+/*
+.item-type-0 { background-image: url('../../images/pear.png'); }
+.item-type-1 { background-image: url('../../images/flower.png'); }
+.item-type-2 { background-image: url('../../images/leaf.png'); }
+.item-type-3 { background-image: url('../../images/blackberry.png'); }
+.item-type-4 { background-image: url('../../images/strawberry.png'); }
+*/
+/* --- КОНЕЦ ВАРИАНТОВ ПУТЕЙ --- */
+
+
+.game-over-match3 {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(26, 37, 58, 0.95); backdrop-filter: blur(5px); color: var(--text-primary); padding: 30px; border-radius: 15px; z-index: 100; width: 85%; max-width: 320px; border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
 .game-over-match3 h2 { margin-top: 0; margin-bottom: 15px; color: var(--primary-accent); font-size: 1.4em; font-weight: 700; }
 .game-over-match3 p { margin-bottom: 20px; font-size: 1.1em; color: var(--text-secondary);}
 #final-score-match3 { font-weight: bold; color: var(--primary-accent-hover); }

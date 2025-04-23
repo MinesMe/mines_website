@@ -182,8 +182,8 @@ body {
 .balance-overview h2 { font-size: 1.8em; margin: 0; color: var(--dark-text-primary); display: inline-flex; align-items: center;}
 .balance-overview h2 #toggle-balance-visibility { font-size: 0.8em; margin-left: 10px; color: var(--dark-text-secondary); cursor: pointer; transition: color 0.2s; }
 .balance-overview h2 #toggle-balance-visibility:hover { color: var(--dark-text-primary); }
-.cards-overview .card-list { display: flex; padding-bottom: 10px; overflow-x: auto; justify-content: center; scrollbar-width: none; }
-.cards-overview .card-list::-webkit-scrollbar { display: none; }
+.cards-overview .card-list { display: flex; padding-bottom: 10px; overflow-x: auto; justify-content: center; /* Hide scrollbar visually if desired */ scrollbar-width: none; /* Firefox */ }
+.cards-overview .card-list::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
 .cards-overview .card { min-width: 280px; max-width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; }
 .kaktus-card { background-color: transparent; }
 .kaktus-card img { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: cover; }
@@ -199,7 +199,7 @@ body {
 .offers .offer-item span { font-size: 0.85em; color: var(--dark-text-secondary); }
 
 /* --- Стили Продукты (No Changes Needed) --- */
-#products-content .product-item { margin: 0 auto 15px auto; max-width: 280px; }
+#products-content .product-item { margin: 0 auto 15px auto; /* Center the card */ max-width: 280px; /* Match card size on home */ }
 
 /* --- Стили Платежи (No Changes Needed) --- */
 .installment-plans { display: flex; flex-direction: column; gap: 15px; }
@@ -215,7 +215,7 @@ body {
 .transaction-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .transaction-item { display: flex; align-items: center; background-color: var(--dark-surface); padding: 12px 15px; border-radius: 8px; }
 .transaction-icon { width: 36px; height: 36px; border-radius: 50%; background-color: var(--dark-surface-active); display: flex; justify-content: center; align-items: center; margin-right: 15px; color: var(--dark-text-secondary); font-size: 1.1em; flex-shrink: 0; }
-.transaction-details { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+.transaction-details { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; /* Prevent long names breaking layout */ }
 .transaction-details .store-name { font-weight: 500; color: var(--dark-text-primary); font-size: 0.95em; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .transaction-details .transaction-time { font-size: 0.8em; color: var(--dark-text-secondary); }
 .amount { font-weight: 600; font-size: 1em; white-space: nowrap; margin-left: 10px; }
@@ -234,9 +234,14 @@ body {
 .split-section:hover, .split-section:focus { filter: brightness(1.05); }
 .split-section:hover .split-overlay, .split-section:focus .split-overlay { background-color: rgba(0, 0, 0, 0.25); }
 
-/* === NEW STYLES FOR UPDATED PARTNER STREET === */
-#shop-page-content { background-color: var(--dark-bg); z-index: 10; /* Ensure it's above normal content */ }
-
+/* === STYLES FOR UPDATED PARTNER STREET === */
+#shop-page-content {
+    /* Ensure flex layout for header and street container */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-bg);
+    z-index: 10; /* Keep it above normal content */
+}
 .shop-header {
     /* Styles remain the same */
     display: flex; align-items: center; justify-content: space-between;
@@ -245,19 +250,32 @@ body {
 }
 .back-button { /* Styles remain the same */ background: none; border: none; color: var(--dark-text-primary); font-size: 1.4em; cursor: pointer; padding: 5px 10px 5px 0; line-height: 1; margin-right: 10px; }
 .back-button:hover { color: var(--dark-accent-blue-hover); }
-.shop-title { /* Styles remain the same */ font-size: 1.2em; font-weight: 600; color: var(--dark-text-primary); text-align: center; flex-grow: 1; margin-left: -30px; }
+.shop-title {
+    /* --- УМЕНЬШЕН РАЗМЕР ШРИФТА И ДОБАВЛЕНО ОБРЕЗАНИЕ --- */
+    font-size: 1.1em; /* Было 1.2em */
+    font-weight: 600;
+    color: var(--dark-text-primary);
+    text-align: center;
+    flex-grow: 1;
+    margin-left: -30px; /* Оставляем для центрирования */
+    white-space: nowrap; /* Запретить перенос по умолчанию */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Добавить троеточие, если не влезает */
+    padding: 0 5px; /* Небольшой отступ от краев */
+}
 .coin-balance { /* Styles remain the same */ display: flex; align-items: center; background-color: var(--dark-surface-active); padding: 4px 10px; border-radius: 15px; margin-left: 10px; flex-shrink: 0; }
 .coin-count { /* Styles remain the same */ font-size: 1em; font-weight: bold; color: var(--coin-color); margin-right: 6px; }
 .coin-image { /* Styles remain the same */ width: 20px; height: 20px; display: block; }
 
 /* The container for the street scene */
 .vertical-partner-street {
-    flex-grow: 1; /* Takes remaining space */
-    overflow-y: auto; /* Allows scrolling */
+    flex-grow: 1; /* ! Важно, чтобы занимал доступное место по высоте */
+    overflow-y: auto; /* ! Включаем вертикальную прокрутку */
     position: relative; /* Positioning context for absolute children */
     background: linear-gradient(to bottom, #1a2a3a, var(--dark-bg) 30%); /* Subtle gradient sky to ground */
     padding: 20px 0; /* Padding top/bottom, no side padding needed */
-    min-height: 800px; /* Ensure enough height for scrolling, adjust as needed */
+    /* Удаляем min-height, чтобы прокрутка работала естественно */
+    /* min-height: 800px; */
     /* Hide scrollbar */
     &::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
     scrollbar-width: none;
@@ -277,6 +295,8 @@ body {
     border-right: 2px solid #222;
     z-index: 1; /* Road is base layer */
     overflow: hidden; /* Hide line overflow */
+    /* Ensure road covers full height */
+    min-height: 100%; /* Or use height: 100% if parent has fixed height */
 }
 
 /* Road Center Line */
@@ -333,7 +353,7 @@ body {
     outline: none;
 }
 
-.partner-logo.shop.open {
+.partner-logo.shop.open { /* Style when its offer is shown */
     transform: scale(1.1);
     box-shadow: 0 0 0 3px var(--dark-accent-blue-hover), 4px 4px 12px rgba(0, 0, 0, 0.5); /* Highlight border */
 }
@@ -345,60 +365,29 @@ body {
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
+    pointer-events: none; /* Decorations shouldn't interfere with clicks */
 }
 
-/* Basic Tree Styles (customize further) */
+/* Basic Tree Styles */
 .tree {
     width: 50px;
     height: 70px;
-    /* Simple representation using gradients or background images */
 }
 .tree::before { /* Trunk */
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 25px;
-    background-color: var(--tree-trunk-color);
-    border-radius: 2px;
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 10px; height: 25px; background-color: var(--tree-trunk-color); border-radius: 2px;
 }
 .tree::after { /* Leaves */
-    content: '';
-    position: absolute;
-    bottom: 20px; /* Above trunk */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    content: ''; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    width: 50px; height: 50px; border-radius: 50%;
 }
-.tree.tree-style-1::after {
-    background: radial-gradient(circle, var(--tree-leaves-color-2) 30%, var(--tree-leaves-color-1) 70%);
-}
-.tree.tree-style-2::after {
-    background: radial-gradient(circle, var(--tree-leaves-color-1) 40%, var(--tree-leaves-color-2) 80%);
-     width: 45px; height: 55px; border-radius: 40% 60% 50% 50% / 60% 50% 50% 40%; /* Irregular shape */
-}
+.tree.tree-style-1::after { background: radial-gradient(circle, var(--tree-leaves-color-2) 30%, var(--tree-leaves-color-1) 70%); }
+.tree.tree-style-2::after { background: radial-gradient(circle, var(--tree-leaves-color-1) 40%, var(--tree-leaves-color-2) 80%); width: 45px; height: 55px; border-radius: 40% 60% 50% 50% / 60% 50% 50% 40%; }
 
 /* Basic Stone Styles */
-.stone {
-    background-color: var(--stone-color-1);
-    border-radius: 50%;
-    border: 1px solid #555;
-}
-.stone-small {
-    width: 15px;
-    height: 12px;
-    background-color: var(--stone-color-2);
-}
-.stone-large {
-    width: 25px;
-    height: 20px;
-    border-radius: 40% 60% 50% 50%; /* Irregular shape */
-}
-
+.stone { background-color: var(--stone-color-1); border-radius: 50%; border: 1px solid #555; }
+.stone-small { width: 15px; height: 12px; background-color: var(--stone-color-2); }
+.stone-large { width: 25px; height: 20px; border-radius: 40% 60% 50% 50%; }
 
 /* Partner Offer Popup (Styles remain the same) */
 .partner-offer-popup {
@@ -415,7 +404,7 @@ body {
 .close-offer-button { position: absolute; top: 8px; right: 10px; background: none; border: none; color: var(--dark-text-secondary); font-size: 1.8em; line-height: 1; cursor: pointer; padding: 5px; }
 .close-offer-button:hover { color: var(--dark-text-primary); }
 
-/* === END NEW PARTNER STREET STYLES === */
+/* === END PARTNER STREET STYLES === */
 
 
 /* --- Стили Страница Игр (No Changes Needed) --- */
