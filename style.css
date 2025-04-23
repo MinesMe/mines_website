@@ -470,3 +470,9 @@ body {
 .modal-content p { margin: 0; font-size: 1.1em; color: var(--dark-text-secondary); }
 
 /* --- КОНЕЦ ФАЙЛА style.css --- */
+/* Уменьшение шрифта для элемента "Halva Club" в нижней навигации */
+.bottom-nav .nav-item[data-target="halva-club-page"] span {
+    font-size: 0.96em; /* Подберите значение меньше стандартного 0.75em */
+    /* Можно добавить небольшой отрицательный отступ, если нужно */
+    /* margin-top: -2px; */
+}
