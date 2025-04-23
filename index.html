@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Moby</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container dark-theme">
+        <!-- === Верхняя панель === -->
+        <header class="app-header">
+            <span class="header-title">Moby</span>
+            <i id="notification-bell" class="fas fa-bell notification-icon"></i>
+        </header>
+
+        <!-- === Основной контент === -->
+        <main class="content-area" id="main-content">
+
+            <!-- === Контент Главной === -->
+            <div class="page-content visible" id="home-content">
+                <section class="balance-overview"> <p>Общий баланс</p><h2 id="balance-amount">5 000,00 BYN <i id="toggle-balance-visibility" class="fas fa-eye-slash"></i></h2> </section>
+                <section class="cards-overview"> <h3>Мои карты</h3> <div class="card-list"> <div class="card kaktus-card"><img src="kaktus-card.jpg" alt="Карта Кактус"></div> </div> </section>
+                <section class="quick-actions"> <h3>Быстрые действия</h3> <div class="actions-grid"> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-money-bill-wave action-icon"></i></div><span>Платеж ЕРИП</span></div> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-exchange-alt action-icon"></i></div><span>Перевод</span></div> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-mobile-alt action-icon"></i></div><span>Телефон</span></div> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-map-marker-alt action-icon"></i></div><span>Партнеры</span></div> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-history action-icon"></i></div><span>История</span></div> <div class="action-item"><div class="action-icon-circle"><i class="fas fa-ellipsis-h action-icon"></i></div><span>Еще</span></div> </div> </section>
+                <section class="offers"> <h3>Предложения для вас</h3> <div class="offer-item"><p>Кэшбэк 5% в категории "Кафе"</p><span>До 31 августа</span></div> <div class="offer-item"><p>Скидка 10% на первую поездку</p><span>Партнер "Такси Ветерок"</span></div> </section>
+            </div>
+
+            <!-- === Контент Продукты === -->
+            <div class="page-content" id="products-content" style="display: none;">
+                <h3 class="page-title">Мои продукты</h3>
+                <div class="product-item card kaktus-card"> <img src="kaktus-card.jpg" alt="Карта Кактус"> </div>
+            </div>
+
+            <!-- === Контент Платежи === -->
+            <div class="page-content" id="payments-content" style="display: none;">
+                 <h3 class="page-title">Рассрочка</h3>
+                 <div class="installment-plans">
+                     <div class="installment-item"> <div class="installment-details"> <span class="item-name">Холодильник Atlant</span> <span class="item-amount-info">Осталось 1000.00 / 3000.00 BYN</span> </div> <div class="progress-bar-container"><div class="progress-bar" style="width: 66.67%;"></div></div> <span class="next-payment-info">Следующий платеж: 150.00 BYN до 15.09</span> </div>
+                     <div class="installment-item"> <div class="installment-details"> <span class="item-name">Микроволновая печь Philips</span> <span class="item-amount-info">Осталось 150.00 / 300.00 BYN</span> </div> <div class="progress-bar-container"><div class="progress-bar" style="width: 50%;"></div></div> <span class="next-payment-info">Следующий платеж: 50.00 BYN до 20.09</span> </div>
+                 </div>
+            </div>
+
+            <!-- === Контент История === -->
+            <div class="page-content" id="history-content" style="display: none;">
+                <h3 class="page-title">История операций</h3>
+                <ul class="transaction-list">
+                    <li class="transaction-item"><div class="transaction-icon"><i class="fas fa-shopping-cart"></i></div><div class="transaction-details"><span class="store-name">Гипермаркет Green</span><span class="transaction-time">Сегодня, 14:32</span></div><span class="amount expense">-500.00 BYN</span></li>
+                    <li class="transaction-item"><div class="transaction-icon"><i class="fas fa-store"></i></div><div class="transaction-details"><span class="store-name">21vek.by</span><span class="transaction-time">Вчера, 10:15</span></div><span class="amount expense">-300.00 BYN</span></li>
+                    <li class="transaction-item"><div class="transaction-icon"><i class="fas fa-gas-pump"></i></div><div class="transaction-details"><span class="store-name">АЗС Белоруснефть №5</span><span class="transaction-time">15 августа, 18:05</span></div><span class="amount expense">-200.00 BYN</span></li>
+                    <li class="transaction-item"><div class="transaction-icon"><i class="fas fa-money-bill-wave"></i></div><div class="transaction-details"><span class="store-name">Зачисление зарплаты</span><span class="transaction-time">10 августа, 09:00</span></div><span class="amount income">+2500.00 BYN</span></li>
+                </ul>
+            </div>
+
+            <!-- === Контент Halva Club (Split View) === -->
+            <div class="halva-club-content halva-split-view page-content" id="halva-club-page" style="display: none;">
+                <div class="split-section shop-split" id="shop-split-section" role="button" tabindex="0"><div class="split-overlay"></div><h2 class="split-title">Партнеры</h2></div>
+                <div class="split-section games-split" id="games-split-section" role="button" tabindex="0"><div class="split-overlay"></div><h2 class="split-title">Игры</h2></div>
+            </div>
+
+            <!-- === Контент Страница Партнеров (Обновленная Улица с расстановкой) === -->
+            <div class="shop-page page-content" id="shop-page-content" style="display: none;">
+                 <header class="shop-header">
+                     <button class="back-button" id="back-to-split-view" aria-label="Назад"><i class="fas fa-arrow-left"></i></button>
+                     <span class="shop-title">Партнеры Moby</span>
+                     <div class="coin-balance"><span class="coin-count">17</span><img src="moneta.png" alt="Монеты" class="coin-image"></div>
+                 </header>
+                 <!-- Container for the street scene -->
+                 <div class="vertical-partner-street">
+                     <!-- The Road -->
+                     <div class="road">
+                         <div class="road-line"></div>
+                     </div>
+
+                     <!-- Shops (Partner Logos positioned absolutely) -->
+                     <!-- Позиции магазинов не меняем -->
+                     <img src="images/partners/ozby-logo.png" alt="OZ.by" class="partner-logo shop shop-left" style="top: 5%;" data-partner="ozby" role="button" tabindex="0">
+                     <img src="images/partners/dodo-logo.png" alt="Додо Пицца" class="partner-logo shop shop-right" style="top: 18%;" data-partner="dodo" role="button" tabindex="0">
+                     <img src="images/partners/belpost-logo.png" alt="Белпочта" class="partner-logo shop shop-left" style="top: 35%;" data-partner="belpost" role="button" tabindex="0">
+                     <img src="images/partners/letu-logo.png" alt="Л'Этуаль" class="partner-logo shop shop-right" style="top: 50%;" data-partner="letu" role="button" tabindex="0">
+                     <img src="images/partners/ozon-logo.png" alt="Ozon" class="partner-logo shop shop-left" style="top: 68%;" data-partner="ozon" role="button" tabindex="0">
+
+                     <!-- === ИЗМЕНЕННЫЕ ПОЗИЦИИ ДЕКОРАЦИЙ === -->
+
+                     <!-- Деревья -->
+                     <div class="tree tree-style-1" style="top: 20%; left: 8%;"></div>   <!-- Слева, между 1 и 3 магазином -->
+                     <div class="tree tree-style-2" style="top: 38%; right: 10%;"></div>  <!-- Справа, между 2 и 4 магазином -->
+                     <div class="tree tree-style-1" style="top: 60%; right: 12%;"></div> <!-- Справа, между 4 и концом -->
+                     <div class="tree tree-style-2" style="top: 85%; left: 10%;"></div>  <!-- Слева, внизу -->
+
+
+                     <!-- Камни -->
+                     <div class="stone stone-large" style="top: 10%; left: 15%;"></div>  <!-- Слева, вверху -->
+                     <div class="stone stone-small" style="top: 30%; right: 18%;"></div> <!-- Справа, между 1 и 2 -->
+                     <div class="stone stone-large" style="top: 55%; left: 12%;"></div>  <!-- Слева, между 3 и 5 -->
+                     <div class="stone stone-small" style="top: 78%; right: 15%;"></div> <!-- Справа, внизу -->
+
+                     <!-- === КОНЕЦ ИЗМЕНЕННЫХ ПОЗИЦИЙ === -->
+
+                 </div> <!-- End .vertical-partner-street -->
+
+                 <!-- Окно с акцией (остается без изменений) -->
+                 <div id="partner-offer-popup" class="partner-offer-popup">
+                     <button id="close-offer-popup" class="close-offer-button">×</button>
+                     <h4 id="offer-title">Акция от Партнера</h4>
+                     <p id="offer-details">Подробности акции появятся здесь...</p>
+                 </div>
+            </div>
+            <!-- Конец #shop-page-content -->
+
+
+            <!-- === Контент Страница Игр === -->
+            <div class="games-page page-content" id="games-page-content" style="display: none;">
+                 <header class="games-page-header">
+                     <button class="back-button" id="back-to-split-view-from-games" aria-label="Назад"><i class="fas fa-arrow-left"></i></button>
+                     <span class="games-page-title">Moby Игры</span>
+                 </header>
+                 <!-- Кнопки выбора + Таблица лидеров -->
+                 <div class="game-selection-container">
+                     <div class="game-selection">
+                         <button data-game="block_blast">Block Blast</button>
+                         <button data-game="match_3">Три-в-ряд</button>
+                         <button data-game="word_find">Круг Слов</button>
+                         <!-- Leaderboard Button Added -->
+                         <button id="show-leaderboard-btn" class="leaderboard-btn"><i class="fas fa-trophy"></i> Лидеры</button>
+                     </div>
+                 </div>
+                 <!-- Обертка для контента игры или таблицы -->
+                 <div class="game-area-wrapper">
+                     <!-- Контейнер для игры (iframe/placeholder) -->
+                     <div id="game-content-container" class="game-content-container visible">
+                         <p class="placeholder-text">Выберите игру, чтобы начать.</p>
+                         <iframe id="game-iframe" title="Game Area" style="display: none;"></iframe>
+                     </div>
+                     <!-- Таблица лидеров (Updated Structure) -->
+                     <div id="leaderboard-view" class="leaderboard-view" style="display: none;">
+                         <div class="leaderboard-header">
+                              <button id="back-to-games-btn" class="back-button leaderboard-back-btn" aria-label="Назад к играм"><i class="fas fa-arrow-left"></i></button>
+                              <h3>Таблица лидеров</h3>
+                         </div>
+                         <!-- List will be populated by script.js -->
+                         <ul class="leaderboard-list"></ul>
+                     </div>
+                 </div> <!-- Конец .game-area-wrapper -->
+            </div>
+            <!-- Конец #games-page-content -->
+
+            <!-- === Экран-заглушка === -->
+            <div class="page-content blank-screen" id="blank-screen" style="display: none;"> <p>Раздел в разработке</p> </div>
+        </main>
+
+        <!-- === Нижняя навигация === -->
+        <footer class="bottom-nav">
+            <div class="nav-item active" data-target="home-content"><i class="fas fa-home"></i><span>Главная</span></div>
+            <div class="nav-item" data-target="products-content"><i class="fas fa-credit-card"></i><span>Продукты</span></div>
+            <div class="nav-item" data-target="halva-club-page"><i class="fas fa-gamepad"></i><span>Halva Club</span></div>
+            <div class="nav-item" data-target="payments-content"><i class="fas fa-receipt"></i><span>Платежи</span></div>
+            <div class="nav-item" data-target="history-content"><i class="fas fa-history"></i><span>История</span></div>
+        </footer>
+    </div>
+
+    <!-- === Модальное окно уведомлений === -->
+    <div id="notification-modal-overlay" class="modal-overlay">
+        <div id="notification-modal-content" class="modal-content">
+            <p>Новостей пока нет :)</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

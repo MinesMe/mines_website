@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Три в Ряд</title>
+    <link rel="stylesheet" href="match_3.css">
+</head>
+<body>
+    <div class="match3-game-container">
+        <div class="match3-header">
+            <div class="score-display">Счет: <span id="score">0</span></div>
+            <!-- Можно добавить таймер или счетчик ходов -->
+            <button id="restart-match3">Заново</button>
+        </div>
+
+        <div id="match3-grid" class="match3-grid">
+            <!-- Ячейки с элементами будут добавлены сюда JS -->
+        </div>
+
+         <div id="game-over-match3" class="game-over-match3" style="display: none;">
+             <h2>Игра окончена!</h2>
+             <p>Финальный счет: <span id="final-score-match3">0</span></p>
+             <button id="play-again-match3">Играть снова</button>
+         </div>
+    </div>
+
+    <script src="match_3.js"></script>
+</body>
+</html>

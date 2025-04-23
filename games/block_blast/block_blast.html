@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- Важно: user-scalable=no для мобильных в игре -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Block Blast</title>
+    <!-- Подключаем СВОИ стили -->
+    <link rel="stylesheet" href="block_blast.css">
+</head>
+<body>
+    <!-- Убрали внешний контейнер, оставляем только саму игру -->
+    <div class="game-header">
+         <!-- Можно убрать H1 если заголовок уже есть в основном приложении -->
+         <!-- <h1>Block Blast</h1> -->
+        <div class="score-container">
+            Счет: <span id="score">0</span>
+        </div>
+        <button id="restart-button-ingame" class="restart-button-ingame">Рестарт</button>
+    </div>
+
+    <div id="game-board" class="game-board">
+        <!-- Ячейки сетки будут добавлены здесь с помощью JS -->
+    </div>
+
+    <div id="piece-container" class="piece-container">
+        <!-- Фигуры для размещения будут добавлены здесь с помощью JS -->
+    </div>
+
+    <div id="game-over-message" class="game-over-message" style="display: none;">
+        <h2>Конец игры!</h2>
+        <p>Финальный счет: <span id="final-score">0</span></p>
+        <button id="restart-button">Перезапустить игру</button>
+    </div>
+
+    <!-- Подключаем СВОЙ скрипт -->
+    <script src="block_blast.js"></script>
+</body>
+</html>

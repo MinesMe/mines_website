@@ -1,0 +1,483 @@
+/* --- START OF FILE style.css --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+:root {
+    /* Main App Theme */
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-surface-hover: #2a2a2a;
+    --dark-surface-active: #333333;
+    --dark-accent-blue: #3a5f94;
+    --dark-accent-blue-hover: #4a72a8;
+    --dark-text-primary: #e0e0e0;
+    --dark-text-secondary: #aaaaaa;
+    --dark-border: #303030;
+    --coin-color: #f0c419;
+    --success-color: #2ecc71;
+    --expense-color: #e74c3c;
+    --income-color: var(--success-color);
+
+    /* Games Area Theme (used within #games-page-content) */
+    --games-bg-dark-primary: #1a253a;
+    --games-bg-dark-secondary: #2c3e50;
+    --games-surface-dark: #34495e;
+    --games-primary-accent: #5dade2;
+    --games-primary-accent-hover: #76c7f5;
+    --games-text-primary: #ecf0f1;
+    --games-text-secondary: #bdc3c7;
+    --games-border-color: #46607a;
+    --games-font-family-main: 'Nunito Sans', sans-serif;
+
+    /* Street Scene specific */
+    --road-color: #444;
+    --road-line-color: rgba(210, 210, 210, 0.8);
+    --tree-trunk-color: #5D4037; /* Brown */
+    --tree-leaves-color-1: #4CAF50; /* Green */
+    --tree-leaves-color-2: #66BB6A; /* Lighter Green */
+    --stone-color-1: #757575; /* Grey */
+    --stone-color-2: #616161; /* Darker Grey */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 20px; /* Padding around the app container */
+    background-color: #333; /* Dark grey background for the page */
+    color: var(--dark-text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align app container to top */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.app-container.dark-theme {
+    width: 375px; /* iPhone X width */
+    height: 812px; /* iPhone X height */
+    background-color: var(--dark-bg);
+    border-radius: 20px; /* Rounded corners for the device */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Clip content to rounded corners */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For absolute positioning inside */
+}
+
+/* --- App Header --- */
+.app-header {
+    background-color: var(--dark-surface);
+    color: var(--dark-text-primary);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    flex-shrink: 0; /* Prevent header from shrinking */
+    border-bottom: 1px solid var(--dark-border);
+}
+.header-title {
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 24px; /* Offset for notification icon space */
+    font-size: 1.1em;
+}
+.notification-icon {
+    font-size: 1.2em;
+    color: var(--dark-text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    width: 24px; /* Ensure consistent spacing */
+    text-align: center;
+}
+.notification-icon:hover {
+    color: var(--dark-text-primary);
+}
+
+/* --- Main Content Area --- */
+.content-area {
+    flex-grow: 1; /* Take remaining vertical space */
+    overflow-y: auto; /* Allow scrolling within content */
+    position: relative; /* For absolute positioning of pages */
+    background-color: var(--dark-bg);
+    /* Hide scrollbar */
+    &::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.page-content {
+    padding: 20px;
+    opacity: 0; /* Start hidden for transition */
+    transition: opacity 0.3s ease-in-out;
+    position: absolute; /* Default: pages overlay each other */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling within the page if needed */
+    display: none; /* Hide by default, JS controls display */
+}
+/* Exception: Home content is visible by default */
+#home-content {
+    position: relative; /* Let it flow normally */
+    height: auto;
+    opacity: 1; /* Start visible */
+    overflow-y: visible; /* Allow natural scrolling with content-area */
+    display: block; /* Ensure it's displayed */
+}
+.page-content.visible {
+    opacity: 1;
+    z-index: 1; /* Bring visible page to front (except special pages) */
+    display: block; /* Make sure it's displayed */
+}
+
+/* Special Pages Styling (Overlaying Pages) */
+#halva-club-page, #shop-page-content, #games-page-content, #blank-screen {
+    /* Already absolutely positioned by .page-content */
+    padding: 0; /* These pages manage their own padding */
+    overflow: hidden; /* Prevent scrollbars within these pages */
+    background-color: var(--dark-bg);
+    z-index: 5; /* Ensure they are above default pages */
+    display: flex; /* Use flex for layout */
+    /* Opacity/visibility controlled by JS adding/removing .visible */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+}
+#halva-club-page.visible,
+#shop-page-content.visible,
+#games-page-content.visible,
+#blank-screen.visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+    display: flex; /* Ensure display is flex when visible */
+}
+
+/* Layouts for special pages */
+#halva-club-page { flex-direction: row; } /* Split view is horizontal */
+#shop-page-content, #games-page-content, #blank-screen {
+    flex-direction: column; /* Default for these pages */
+}
+#blank-screen { /* Center content on blank screen */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--dark-text-secondary);
+}
+.page-title { /* Centered title for standard pages */
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--dark-text-primary);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- Стили Главной (No Changes Needed) --- */
+#home-content section { margin-bottom: 25px; }
+#home-content section h3 { font-size: 1.1em; margin-bottom: 15px; color: var(--dark-text-primary); font-weight: 500; text-align: center; }
+.balance-overview { text-align: center; }
+.balance-overview p { color: var(--dark-text-secondary); margin-bottom: 5px; font-size: 0.9em; }
+.balance-overview h2 { font-size: 1.8em; margin: 0; color: var(--dark-text-primary); display: inline-flex; align-items: center;}
+.balance-overview h2 #toggle-balance-visibility { font-size: 0.8em; margin-left: 10px; color: var(--dark-text-secondary); cursor: pointer; transition: color 0.2s; }
+.balance-overview h2 #toggle-balance-visibility:hover { color: var(--dark-text-primary); }
+.cards-overview .card-list { display: flex; padding-bottom: 10px; overflow-x: auto; justify-content: center; scrollbar-width: none; }
+.cards-overview .card-list::-webkit-scrollbar { display: none; }
+.cards-overview .card { min-width: 280px; max-width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; }
+.kaktus-card { background-color: transparent; }
+.kaktus-card img { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: cover; }
+.actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 25px 15px; }
+.action-item { text-align: center; cursor: pointer; }
+.action-icon-circle { width: 56px; height: 56px; background-color: var(--dark-surface); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 10px auto; transition: background-color 0.2s ease-out; }
+.action-item:hover .action-icon-circle { background-color: var(--dark-surface-hover); }
+.action-icon-circle .action-icon { font-size: 1.5em; color: var(--dark-accent-blue); }
+.action-item span { font-size: 0.8em; color: var(--dark-text-secondary); display: block; }
+.offers .offer-item { background-color: var(--dark-surface); padding: 15px; border-radius: 8px; border-left: 4px solid var(--dark-accent-blue); margin-bottom: 12px; cursor: pointer; transition: background-color 0.2s ease-out; text-align: left; }
+.offers .offer-item:hover { background-color: var(--dark-surface-hover); }
+.offers .offer-item p { margin: 0 0 5px 0; font-weight: 500; color: var(--dark-text-primary); }
+.offers .offer-item span { font-size: 0.85em; color: var(--dark-text-secondary); }
+
+/* --- Стили Продукты (No Changes Needed) --- */
+#products-content .product-item { margin: 0 auto 15px auto; max-width: 280px; }
+
+/* --- Стили Платежи (No Changes Needed) --- */
+.installment-plans { display: flex; flex-direction: column; gap: 15px; }
+.installment-item { background-color: var(--dark-surface); padding: 15px; border-radius: 10px; border-left: 4px solid var(--dark-accent-blue); }
+.installment-details { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 5px; }
+.installment-details .item-name { font-weight: 500; color: var(--dark-text-primary); font-size: 1em; margin-right: 10px; }
+.installment-details .item-amount-info { font-size: 0.85em; color: var(--dark-text-secondary); white-space: nowrap; }
+.progress-bar-container { width: 100%; height: 8px; background-color: var(--dark-surface-active); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+.progress-bar { height: 100%; background-color: var(--dark-accent-blue-hover); border-radius: 4px; transition: width 0.5s ease-out; }
+.next-payment-info { font-size: 0.8em; color: var(--dark-text-secondary); display: block; }
+
+/* --- Стили История (No Changes Needed) --- */
+.transaction-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.transaction-item { display: flex; align-items: center; background-color: var(--dark-surface); padding: 12px 15px; border-radius: 8px; }
+.transaction-icon { width: 36px; height: 36px; border-radius: 50%; background-color: var(--dark-surface-active); display: flex; justify-content: center; align-items: center; margin-right: 15px; color: var(--dark-text-secondary); font-size: 1.1em; flex-shrink: 0; }
+.transaction-details { flex-grow: 1; display: flex; flex-direction: column; overflow: hidden; }
+.transaction-details .store-name { font-weight: 500; color: var(--dark-text-primary); font-size: 0.95em; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.transaction-details .transaction-time { font-size: 0.8em; color: var(--dark-text-secondary); }
+.amount { font-weight: 600; font-size: 1em; white-space: nowrap; margin-left: 10px; }
+.amount.expense { color: var(--expense-color); }
+.amount.income { color: var(--income-color); }
+
+/* --- Стили Halva Club Split View (No Changes Needed) --- */
+.halva-split-view { padding: 0 !important; }
+.split-section { flex: 1; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; cursor: pointer; overflow: hidden; transition: filter 0.3s ease; outline: none; box-sizing: border-box; }
+.shop-split { background-image: url('zadniyfonmagazin.jpg'); background-color: #3a5f94; border-right: 1px solid #000000; }
+.games-split { background-image: url('zadniyfonigry.jpg'); background-color: #6a3f94; }
+.split-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1; transition: background-color 0.3s ease; }
+.split-title { position: relative; z-index: 2; font-family: Calibri, Candara, Segoe UI, Optima, Verdana, Geneva, sans-serif; font-size: 2.7em; font-weight: 500; color: #fff; text-align: center; text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.6); margin: 0; padding: 15px; }
+.shop-split .split-title { color: #ade0e5; }
+.games-split .split-title { color: #f5ccae; }
+.split-section:hover, .split-section:focus { filter: brightness(1.05); }
+.split-section:hover .split-overlay, .split-section:focus .split-overlay { background-color: rgba(0, 0, 0, 0.25); }
+
+/* === NEW STYLES FOR UPDATED PARTNER STREET === */
+#shop-page-content { background-color: var(--dark-bg); z-index: 10; /* Ensure it's above normal content */ }
+
+.shop-header {
+    /* Styles remain the same */
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 15px 15px; background-color: var(--dark-surface);
+    border-bottom: 1px solid var(--dark-border); flex-shrink: 0;
+}
+.back-button { /* Styles remain the same */ background: none; border: none; color: var(--dark-text-primary); font-size: 1.4em; cursor: pointer; padding: 5px 10px 5px 0; line-height: 1; margin-right: 10px; }
+.back-button:hover { color: var(--dark-accent-blue-hover); }
+.shop-title { /* Styles remain the same */ font-size: 1.2em; font-weight: 600; color: var(--dark-text-primary); text-align: center; flex-grow: 1; margin-left: -30px; }
+.coin-balance { /* Styles remain the same */ display: flex; align-items: center; background-color: var(--dark-surface-active); padding: 4px 10px; border-radius: 15px; margin-left: 10px; flex-shrink: 0; }
+.coin-count { /* Styles remain the same */ font-size: 1em; font-weight: bold; color: var(--coin-color); margin-right: 6px; }
+.coin-image { /* Styles remain the same */ width: 20px; height: 20px; display: block; }
+
+/* The container for the street scene */
+.vertical-partner-street {
+    flex-grow: 1; /* Takes remaining space */
+    overflow-y: auto; /* Allows scrolling */
+    position: relative; /* Positioning context for absolute children */
+    background: linear-gradient(to bottom, #1a2a3a, var(--dark-bg) 30%); /* Subtle gradient sky to ground */
+    padding: 20px 0; /* Padding top/bottom, no side padding needed */
+    min-height: 800px; /* Ensure enough height for scrolling, adjust as needed */
+    /* Hide scrollbar */
+    &::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* The Road Element */
+.road {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* Width of the road */
+    background-color: var(--road-color);
+    border-left: 2px solid #222; /* Darker edge */
+    border-right: 2px solid #222;
+    z-index: 1; /* Road is base layer */
+    overflow: hidden; /* Hide line overflow */
+}
+
+/* Road Center Line */
+.road .road-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px; /* Width of the dashed line */
+    /* Dashed line using background gradient */
+    background: repeating-linear-gradient(
+        var(--road-line-color) 0,
+        var(--road-line-color) 25px, /* Length of dash */
+        transparent 25px,
+        transparent 45px /* Length of gap */
+    );
+}
+
+/* Styling for Partner Logos as Shops */
+.partner-logo.shop {
+    position: absolute;
+    width: 80px; /* Fixed width for shops */
+    height: auto;
+    max-width: none; /* Override previous max-width */
+    padding: 8px;
+    background-color: var(--dark-surface-active);
+    border: 1px solid var(--dark-border);
+    border-radius: 6px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    z-index: 3; /* Shops above road and decorations */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    /* Remove grayscale/opacity from previous style */
+    filter: none;
+    opacity: 1;
+    object-fit: contain; /* Ensure logo fits inside padding */
+}
+
+.partner-logo.shop-left {
+    left: 25px; /* Position left shops */
+    transform-origin: center left;
+}
+
+.partner-logo.shop-right {
+    right: 25px; /* Position right shops */
+    transform-origin: center right;
+}
+
+.partner-logo.shop:hover,
+.partner-logo.shop:focus {
+    transform: scale(1.1); /* Slightly larger on hover */
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+.partner-logo.shop.open {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px var(--dark-accent-blue-hover), 4px 4px 12px rgba(0, 0, 0, 0.5); /* Highlight border */
+}
+
+/* Decorative Elements */
+.tree, .stone {
+    position: absolute;
+    z-index: 2; /* Below shops, above road */
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: contain;
+}
+
+/* Basic Tree Styles (customize further) */
+.tree {
+    width: 50px;
+    height: 70px;
+    /* Simple representation using gradients or background images */
+}
+.tree::before { /* Trunk */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 25px;
+    background-color: var(--tree-trunk-color);
+    border-radius: 2px;
+}
+.tree::after { /* Leaves */
+    content: '';
+    position: absolute;
+    bottom: 20px; /* Above trunk */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.tree.tree-style-1::after {
+    background: radial-gradient(circle, var(--tree-leaves-color-2) 30%, var(--tree-leaves-color-1) 70%);
+}
+.tree.tree-style-2::after {
+    background: radial-gradient(circle, var(--tree-leaves-color-1) 40%, var(--tree-leaves-color-2) 80%);
+     width: 45px; height: 55px; border-radius: 40% 60% 50% 50% / 60% 50% 50% 40%; /* Irregular shape */
+}
+
+/* Basic Stone Styles */
+.stone {
+    background-color: var(--stone-color-1);
+    border-radius: 50%;
+    border: 1px solid #555;
+}
+.stone-small {
+    width: 15px;
+    height: 12px;
+    background-color: var(--stone-color-2);
+}
+.stone-large {
+    width: 25px;
+    height: 20px;
+    border-radius: 40% 60% 50% 50%; /* Irregular shape */
+}
+
+
+/* Partner Offer Popup (Styles remain the same) */
+.partner-offer-popup {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(110%);
+    width: calc(100% - 40px); max-width: 350px; background-color: var(--dark-surface);
+    border: 1px solid var(--dark-border); border-radius: 12px; padding: 20px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4); z-index: 20; opacity: 0; visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, visibility 0s linear 0.4s;
+    box-sizing: border-box;
+}
+.partner-offer-popup.visible { transform: translateX(-50%) translateY(0%); opacity: 1; visibility: visible; transition-delay: 0s; }
+.partner-offer-popup h4 { margin-top: 0; margin-bottom: 10px; color: var(--dark-accent-blue-hover); font-size: 1.1em; }
+.partner-offer-popup p { margin: 0; font-size: 0.95em; color: var(--dark-text-primary); line-height: 1.5; }
+.close-offer-button { position: absolute; top: 8px; right: 10px; background: none; border: none; color: var(--dark-text-secondary); font-size: 1.8em; line-height: 1; cursor: pointer; padding: 5px; }
+.close-offer-button:hover { color: var(--dark-text-primary); }
+
+/* === END NEW PARTNER STREET STYLES === */
+
+
+/* --- Стили Страница Игр (No Changes Needed) --- */
+#games-page-content { flex-direction: column; background-color: var(--games-bg-dark-primary); z-index: 10; font-family: var(--games-font-family-main); color: var(--games-text-primary); }
+.games-page-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 15px; background-color: var(--games-surface-dark); border-bottom: 1px solid var(--games-border-color); flex-shrink: 0; color: var(--games-text-primary); }
+#games-page-content .back-button { color: var(--games-text-primary); }
+#games-page-content .back-button:hover { color: var(--games-primary-accent-hover); }
+.games-page-title { font-size: 1.2em; font-weight: 600; text-align: center; flex-grow: 1; margin-left: -30px; }
+.game-selection-container { padding: 15px; background-color: var(--games-bg-dark-secondary); flex-shrink: 0; }
+.game-selection { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.game-selection button { padding: 10px 18px; border: none; background-color: var(--games-primary-accent); color: #ffffff; border-radius: 8px; cursor: pointer; transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s; font-size: 0.95em; font-weight: 600; box-shadow: 0 2px 5px rgba(0,0,0,0.15); font-family: var(--games-font-family-main); display: inline-flex; align-items: center; gap: 6px; }
+.game-selection button:hover { background-color: var(--games-primary-accent-hover); box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: translateY(-1px); }
+.game-selection button:active { transform: scale(0.98) translateY(0px); box-shadow: inset 0 2px 3px rgba(0,0,0,0.2); }
+.game-selection button.active { background-color: var(--success-color); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+.game-selection button.active:hover { background-color: #28b463; transform: translateY(0); box-shadow: inset 0 2px 4px rgba(0,0,0,0.3); }
+.leaderboard-btn { background-color: #f39c12; }
+.leaderboard-btn:hover { background-color: #e67e22; }
+.leaderboard-btn.active { background-color: #d35400; }
+.leaderboard-btn.active:hover { background-color: #a04000; }
+.game-area-wrapper { flex-grow: 1; position: relative; margin: 15px; overflow: hidden; display: flex; border-radius: 12px; background-color: var(--games-bg-dark-primary); border: 1px solid var(--games-border-color); }
+.game-content-container { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; z-index: 1; }
+.game-content-container.visible { opacity: 1; visibility: visible; transition-delay: 0s; display: flex; }
+.game-content-container .placeholder-text { color: var(--games-text-secondary); font-size: 1.1em; padding: 20px; text-align: center; }
+#game-iframe { width: 100%; height: 100%; border: none; display: none; }
+.leaderboard-view { width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex; flex-direction: column; background-color: var(--games-bg-dark-secondary); opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; z-index: 2; }
+.leaderboard-view.visible { opacity: 1; visibility: visible; transition-delay: 0s; display: flex; }
+.leaderboard-header { display: flex; align-items: center; padding: 10px 15px; background-color: var(--games-surface-dark); border-bottom: 1px solid var(--games-border-color); flex-shrink: 0; }
+.leaderboard-header h3 { margin: 0; flex-grow: 1; text-align: center; font-size: 1.1em; color: var(--games-text-primary); font-weight: 600; margin-left: -30px; }
+.leaderboard-back-btn { padding: 5px 8px 5px 0; font-size: 1.2em; margin-right: 8px; color: var(--games-text-primary); background: none; border: none; cursor: pointer; line-height: 1; }
+.leaderboard-back-btn:hover { color: var(--games-primary-accent-hover); }
+.leaderboard-list { list-style: none; padding: 15px; margin: 0; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; &::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; } scrollbar-width: none; -ms-overflow-style: none; }
+.leaderboard-item { display: flex; align-items: center; background-color: var(--games-surface-dark); padding: 10px 15px; border-radius: 8px; color: var(--games-text-primary); font-size: 0.95em; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); transition: background-color 0.2s; }
+.leaderboard-item:hover { background-color: #40566e; }
+.leaderboard-item .rank { font-weight: bold; width: 40px; text-align: center; flex-shrink: 0; margin-right: 10px; color: var(--games-primary-accent); font-size: 1.1em; display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+.leaderboard-item .rank i { font-size: 0.9em; }
+.leaderboard-item .name { flex-grow: 1; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 10px; }
+.leaderboard-item .score { font-weight: 600; color: var(--coin-color); white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+.leaderboard-item .coin-icon { width: 16px; height: 16px; }
+.leaderboard-item.rank-1 { background-color: #5a4a1a; border-left: 4px solid #f1c40f; }
+.leaderboard-item.rank-2 { background-color: #444a50; border-left: 4px solid #bdc3c7; }
+.leaderboard-item.rank-3 { background-color: #5a3e2b; border-left: 4px solid #e67e22; }
+.leaderboard-item.rank-1 .rank { color: #f1c40f; font-size: 1.2em;}
+.leaderboard-item.rank-2 .rank { color: #bdc3c7; }
+.leaderboard-item.rank-3 .rank { color: #e67e22; }
+.leaderboard-item.rank-1 .fa-crown { color: #f1c40f; }
+.leaderboard-item.rank-2 .fa-medal { color: #bdc3c7; }
+.leaderboard-item.rank-3 .fa-medal { color: #e67e22; }
+
+/* --- Нижняя навигация (No Changes Needed) --- */
+.bottom-nav { background-color: var(--dark-surface); border-top: 1px solid var(--dark-border); display: flex; justify-content: space-around; padding: 10px 0; width: 100%; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); flex-shrink: 0; }
+.nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.75em; color: var(--dark-text-secondary); padding: 5px 10px; border-radius: 6px; cursor: pointer; user-select: none; transition: color 0.2s ease-out, transform 0.1s ease; text-align: center; flex: 1; min-width: 0; }
+.nav-item i { font-size: 1.4em; margin-bottom: 4px; width: 1.4em; text-align: center; line-height: 1; }
+.nav-item span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.nav-item:hover { color: var(--dark-text-primary); }
+.nav-item:active { transform: scale(0.95); }
+.nav-item.active { color: var(--dark-accent-blue-hover); font-weight: bold; }
+
+/* --- Модальное окно уведомлений (No Changes Needed) --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+.modal-overlay.visible { opacity: 1; visibility: visible; transition-delay: 0s; }
+.modal-content { background-color: var(--dark-surface); padding: 25px 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); color: var(--dark-text-primary); text-align: center; max-width: 80%; transform: scale(0.9); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
+.modal-overlay.visible .modal-content { transform: scale(1); opacity: 1; }
+.modal-content p { margin: 0; font-size: 1.1em; color: var(--dark-text-secondary); }
+
+/* --- КОНЕЦ ФАЙЛА style.css --- */

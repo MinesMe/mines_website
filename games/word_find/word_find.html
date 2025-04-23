@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Круг Слов</title>
+    <link rel="stylesheet" href="word_find.css">
+</head>
+<body>
+    <div class="wordcircle-game-container">
+        <div class="wordcircle-header">
+            <h3>Найдите слова:</h3>
+            <div id="word-list-circle" class="word-list-circle">
+                <!-- Список слов -->
+            </div>
+        </div>
+
+        <div class="letter-wheel-container">
+             <div id="letter-wheel" class="letter-wheel">
+                 <!-- Буквы в кружках -->
+             </div>
+             <!-- SVG для рисования линии -->
+             <svg id="selection-line-svg" class="selection-line-svg">
+                 <polyline id="selection-line" class="selection-line"></polyline>
+             </svg>
+             <div id="current-selection-circle" class="current-selection-circle"></div>
+        </div>
+
+        <div class="wordcircle-footer">
+             <!-- Кнопки удалены -->
+             <button id="play-again-wordcircle-footer" title="Новый набор слов">Новый уровень</button> <!-- Переименовал ID кнопки -->
+        </div>
+
+        <div id="win-message-circle" class="win-message-circle" style="display: none;">
+            <h2>Уровень пройден!</h2>
+            <button id="play-again-wordcircle-win">Следующий уровень</button> <!-- Переименовал ID кнопки -->
+        </div>
+    </div>
+
+    <script src="word_find.js"></script>
+</body>
+</html>
