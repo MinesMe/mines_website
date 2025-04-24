@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartButtonIngame = document.getElementById('restart-button-ingame');
 
     // --- Параметры игры ---
-    const GRID_SIZE = 10;
+    const GRID_SIZE = 7;
     const PIECE_COUNT = 3;
     const BOARD_FIXED_SIZE_PX = 300; // <<--- СООТВЕТСТВУЕТ CSS width/height .game-board
 
