@@ -129,7 +129,7 @@ body {
 .page-content.visible {
     opacity: 1;
     z-index: 1; /* Bring visible page to front (except special pages) */
-    display: block; /* Make sure it's displayed */
+    display: block; /* Ensure it's displayed */
 }
 
 /* Special Pages Styling (Overlaying Pages) */
@@ -174,7 +174,7 @@ body {
     text-align: center;
 }
 
-/* --- Стили Главной (No Changes Needed) --- */
+/* --- Стили Главной --- */
 #home-content section { margin-bottom: 25px; }
 #home-content section h3 { font-size: 1.1em; margin-bottom: 15px; color: var(--dark-text-primary); font-weight: 500; text-align: center; }
 .balance-overview { text-align: center; }
@@ -187,21 +187,24 @@ body {
 .cards-overview .card { min-width: 280px; max-width: 280px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; }
 .kaktus-card { background-color: transparent; }
 .kaktus-card img { display: block; width: 100%; height: auto; border-radius: 12px; object-fit: cover; }
-.actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 25px 15px; }
+.quick-actions { text-align: center; /* Center the grid */ }
+.actions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 25px 15px; max-width: 320px; /* Limit width to keep it centered and avoid stretching too much */ margin: 0 auto; /* Center the grid */ }
 .action-item { text-align: center; cursor: pointer; }
 .action-icon-circle { width: 56px; height: 56px; background-color: var(--dark-surface); border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 10px auto; transition: background-color 0.2s ease-out; }
 .action-item:hover .action-icon-circle { background-color: var(--dark-surface-hover); }
 .action-icon-circle .action-icon { font-size: 1.5em; color: var(--dark-accent-blue); }
 .action-item span { font-size: 0.8em; color: var(--dark-text-secondary); display: block; }
-.offers .offer-item { background-color: var(--dark-surface); padding: 15px; border-radius: 8px; border-left: 4px solid var(--dark-accent-blue); margin-bottom: 12px; cursor: pointer; transition: background-color 0.2s ease-out; text-align: left; }
+.offers { text-align: center; }
+.offers .offer-item { background-color: var(--dark-surface); padding: 15px; border-radius: 8px; border-left: 4px solid var(--dark-accent-blue); margin-bottom: 12px; cursor: pointer; transition: background-color 0.2s ease-out; text-align: left; max-width: 350px; margin-left: auto; margin-right: auto; } /* Added max-width and centering */
 .offers .offer-item:hover { background-color: var(--dark-surface-hover); }
 .offers .offer-item p { margin: 0 0 5px 0; font-weight: 500; color: var(--dark-text-primary); }
 .offers .offer-item span { font-size: 0.85em; color: var(--dark-text-secondary); }
 
-/* --- Стили Продукты (No Changes Needed) --- */
-#products-content .product-item { margin: 0 auto 15px auto; /* Center the card */ max-width: 280px; /* Match card size on home */ }
 
-/* --- Стили Платежи (No Changes Needed) --- */
+/* --- Стили Продукты --- */
+#products-content .product-item { margin: 0 auto 15px auto; max-width: 280px; }
+
+/* --- Стили Платежи --- */
 .installment-plans { display: flex; flex-direction: column; gap: 15px; }
 .installment-item { background-color: var(--dark-surface); padding: 15px; border-radius: 10px; border-left: 4px solid var(--dark-accent-blue); }
 .installment-details { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; flex-wrap: wrap; gap: 5px; }
@@ -211,7 +214,7 @@ body {
 .progress-bar { height: 100%; background-color: var(--dark-accent-blue-hover); border-radius: 4px; transition: width 0.5s ease-out; }
 .next-payment-info { font-size: 0.8em; color: var(--dark-text-secondary); display: block; }
 
-/* --- Стили История (No Changes Needed) --- */
+/* --- Стили История --- */
 .transaction-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .transaction-item { display: flex; align-items: center; background-color: var(--dark-surface); padding: 12px 15px; border-radius: 8px; }
 .transaction-icon { width: 36px; height: 36px; border-radius: 50%; background-color: var(--dark-surface-active); display: flex; justify-content: center; align-items: center; margin-right: 15px; color: var(--dark-text-secondary); font-size: 1.1em; flex-shrink: 0; }
@@ -222,7 +225,7 @@ body {
 .amount.expense { color: var(--expense-color); }
 .amount.income { color: var(--income-color); }
 
-/* --- Стили Halva Club Split View (No Changes Needed) --- */
+/* --- Стили Halva Club Split View --- */
 .halva-split-view { padding: 0 !important; }
 .split-section { flex: 1; height: 100%; position: relative; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; cursor: pointer; overflow: hidden; transition: filter 0.3s ease; outline: none; box-sizing: border-box; }
 .shop-split { background-image: url('zadniyfonmagazin.jpg'); background-color: #3a5f94; border-right: 1px solid #000000; }
@@ -236,160 +239,143 @@ body {
 
 /* === STYLES FOR UPDATED PARTNER STREET === */
 #shop-page-content {
-    /* Ensure flex layout for header and street container */
     display: flex;
     flex-direction: column;
     background-color: var(--dark-bg);
-    z-index: 10; /* Keep it above normal content */
+    z-index: 10;
 }
 .shop-header {
-    /* Styles remain the same */
     display: flex; align-items: center; justify-content: space-between;
     padding: 15px 15px; background-color: var(--dark-surface);
     border-bottom: 1px solid var(--dark-border); flex-shrink: 0;
 }
-.back-button { /* Styles remain the same */ background: none; border: none; color: var(--dark-text-primary); font-size: 1.4em; cursor: pointer; padding: 5px 10px 5px 0; line-height: 1; margin-right: 10px; }
+.back-button { background: none; border: none; color: var(--dark-text-primary); font-size: 1.4em; cursor: pointer; padding: 5px 10px 5px 0; line-height: 1; margin-right: 10px; }
 .back-button:hover { color: var(--dark-accent-blue-hover); }
 .shop-title {
-    /* --- УМЕНЬШЕН РАЗМЕР ШРИФТА И ДОБАВЛЕНО ОБРЕЗАНИЕ --- */
-    font-size: 1.1em; /* Было 1.2em */
+    font-size: 1.1em;
     font-weight: 600;
     color: var(--dark-text-primary);
     text-align: center;
     flex-grow: 1;
-    margin-left: -30px; /* Оставляем для центрирования */
-    white-space: nowrap; /* Запретить перенос по умолчанию */
+    margin-left: -30px;
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Добавить троеточие, если не влезает */
-    padding: 0 5px; /* Небольшой отступ от краев */
+    text-overflow: ellipsis;
+    padding: 0 5px;
 }
-.coin-balance { /* Styles remain the same */ display: flex; align-items: center; background-color: var(--dark-surface-active); padding: 4px 10px; border-radius: 15px; margin-left: 10px; flex-shrink: 0; }
-.coin-count { /* Styles remain the same */ font-size: 1em; font-weight: bold; color: var(--coin-color); margin-right: 6px; }
-.coin-image { /* Styles remain the same */ width: 20px; height: 20px; display: block; }
+.coin-balance { display: flex; align-items: center; background-color: var(--dark-surface-active); padding: 4px 10px; border-radius: 15px; margin-left: 10px; flex-shrink: 0; }
+.coin-count { font-size: 1em; font-weight: bold; color: var(--coin-color); margin-right: 6px; }
+.coin-image { width: 20px; height: 20px; display: block; }
 
-/* The container for the street scene */
 .vertical-partner-street {
-    flex-grow: 1; /* ! Важно, чтобы занимал доступное место по высоте */
-    overflow-y: auto; /* ! Включаем вертикальную прокрутку */
-    position: relative; /* Positioning context for absolute children */
-    background: linear-gradient(to bottom, #1a2a3a, var(--dark-bg) 30%); /* Subtle gradient sky to ground */
-    padding: 20px 0; /* Padding top/bottom, no side padding needed */
-    /* Удаляем min-height, чтобы прокрутка работала естественно */
-    /* min-height: 800px; */
-    /* Hide scrollbar */
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+    background: linear-gradient(to bottom, #1a2a3a, var(--dark-bg) 30%);
+    padding: 20px 0;
     &::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 
-/* The Road Element */
 .road {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px; /* Width of the road */
+    width: 100px;
     background-color: var(--road-color);
-    border-left: 2px solid #222; /* Darker edge */
+    border-left: 2px solid #222;
     border-right: 2px solid #222;
-    z-index: 1; /* Road is base layer */
-    overflow: hidden; /* Hide line overflow */
-    /* Ensure road covers full height */
-    min-height: 100%; /* Or use height: 100% if parent has fixed height */
+    z-index: 1;
+    overflow: hidden;
+    min-height: 100%;
 }
 
-/* Road Center Line */
 .road .road-line {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 6px; /* Width of the dashed line */
-    /* Dashed line using background gradient */
+    width: 6px;
     background: repeating-linear-gradient(
         var(--road-line-color) 0,
-        var(--road-line-color) 25px, /* Length of dash */
+        var(--road-line-color) 25px,
         transparent 25px,
-        transparent 45px /* Length of gap */
+        transparent 45px
     );
 }
 
-/* Styling for Partner Logos as Shops */
 .partner-logo.shop {
     position: absolute;
-    width: 80px; /* Fixed width for shops */
+    width: 80px;
     height: auto;
-    max-width: none; /* Override previous max-width */
+    max-width: none;
     padding: 8px;
     background-color: var(--dark-surface-active);
     border: 1px solid var(--dark-border);
     border-radius: 6px;
     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    z-index: 3; /* Shops above road and decorations */
+    z-index: 3;
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-    /* Remove grayscale/opacity from previous style */
     filter: none;
     opacity: 1;
-    object-fit: contain; /* Ensure logo fits inside padding */
+    object-fit: contain;
 }
 
 .partner-logo.shop-left {
-    left: 25px; /* Position left shops */
+    left: 25px;
     transform-origin: center left;
 }
 
 .partner-logo.shop-right {
-    right: 25px; /* Position right shops */
+    right: 25px;
     transform-origin: center right;
 }
 
 .partner-logo.shop:hover,
 .partner-logo.shop:focus {
-    transform: scale(1.1); /* Slightly larger on hover */
+    transform: scale(1.1);
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
-.partner-logo.shop.open { /* Style when its offer is shown */
+.partner-logo.shop.open {
     transform: scale(1.1);
-    box-shadow: 0 0 0 3px var(--dark-accent-blue-hover), 4px 4px 12px rgba(0, 0, 0, 0.5); /* Highlight border */
+    box-shadow: 0 0 0 3px var(--dark-accent-blue-hover), 4px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* Decorative Elements */
 .tree, .stone {
     position: absolute;
-    z-index: 2; /* Below shops, above road */
+    z-index: 2;
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: contain;
-    pointer-events: none; /* Decorations shouldn't interfere with clicks */
+    pointer-events: none;
 }
 
-/* Basic Tree Styles */
 .tree {
     width: 50px;
     height: 70px;
 }
-.tree::before { /* Trunk */
+.tree::before {
     content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
     width: 10px; height: 25px; background-color: var(--tree-trunk-color); border-radius: 2px;
 }
-.tree::after { /* Leaves */
+.tree::after {
     content: ''; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
     width: 50px; height: 50px; border-radius: 50%;
 }
 .tree.tree-style-1::after { background: radial-gradient(circle, var(--tree-leaves-color-2) 30%, var(--tree-leaves-color-1) 70%); }
 .tree.tree-style-2::after { background: radial-gradient(circle, var(--tree-leaves-color-1) 40%, var(--tree-leaves-color-2) 80%); width: 45px; height: 55px; border-radius: 40% 60% 50% 50% / 60% 50% 50% 40%; }
 
-/* Basic Stone Styles */
 .stone { background-color: var(--stone-color-1); border-radius: 50%; border: 1px solid #555; }
 .stone-small { width: 15px; height: 12px; background-color: var(--stone-color-2); }
 .stone-large { width: 25px; height: 20px; border-radius: 40% 60% 50% 50%; }
 
-/* Partner Offer Popup (Styles remain the same) */
 .partner-offer-popup {
     position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(110%);
     width: calc(100% - 40px); max-width: 350px; background-color: var(--dark-surface);
@@ -407,7 +393,7 @@ body {
 /* === END PARTNER STREET STYLES === */
 
 
-/* --- Стили Страница Игр (No Changes Needed) --- */
+/* --- Стили Страница Игр --- */
 #games-page-content { flex-direction: column; background-color: var(--games-bg-dark-primary); z-index: 10; font-family: var(--games-font-family-main); color: var(--games-text-primary); }
 .games-page-header { display: flex; align-items: center; justify-content: space-between; padding: 15px 15px; background-color: var(--games-surface-dark); border-bottom: 1px solid var(--games-border-color); flex-shrink: 0; color: var(--games-text-primary); }
 #games-page-content .back-button { color: var(--games-text-primary); }
@@ -453,7 +439,8 @@ body {
 .leaderboard-item.rank-2 .fa-medal { color: #bdc3c7; }
 .leaderboard-item.rank-3 .fa-medal { color: #e67e22; }
 
-/* --- Нижняя навигация (No Changes Needed) --- */
+
+/* --- Нижняя навигация --- */
 .bottom-nav { background-color: var(--dark-surface); border-top: 1px solid var(--dark-border); display: flex; justify-content: space-around; padding: 10px 0; width: 100%; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); flex-shrink: 0; }
 .nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.75em; color: var(--dark-text-secondary); padding: 5px 10px; border-radius: 6px; cursor: pointer; user-select: none; transition: color 0.2s ease-out, transform 0.1s ease; text-align: center; flex: 1; min-width: 0; }
 .nav-item i { font-size: 1.4em; margin-bottom: 4px; width: 1.4em; text-align: center; line-height: 1; }
@@ -462,17 +449,23 @@ body {
 .nav-item:active { transform: scale(0.95); }
 .nav-item.active { color: var(--dark-accent-blue-hover); font-weight: bold; }
 
-/* --- Модальное окно уведомлений (No Changes Needed) --- */
+/* --- Модальное окно уведомлений --- */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
 .modal-overlay.visible { opacity: 1; visibility: visible; transition-delay: 0s; }
 .modal-content { background-color: var(--dark-surface); padding: 25px 30px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); color: var(--dark-text-primary); text-align: center; max-width: 80%; transform: scale(0.9); opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease; }
 .modal-overlay.visible .modal-content { transform: scale(1); opacity: 1; }
 .modal-content p { margin: 0; font-size: 1.1em; color: var(--dark-text-secondary); }
 
-/* --- КОНЕЦ ФАЙЛА style.css --- */
 /* Уменьшение шрифта для элемента "Halva Club" в нижней навигации */
 .bottom-nav .nav-item[data-target="halva-club-page"] span {
-    font-size: 0.9em; /* Подберите значение меньше стандартного 0.75em */
-    /* Можно добавить небольшой отрицательный отступ, если нужно */
-    /* margin-top: -2px; */
+    font-size: 0.9em;
 }
+
+/* Улучшение стилей для сетки быстрых действий */
+.quick-actions .actions-grid {
+     grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* Slightly smaller min width */
+     gap: 20px 10px; /* Reduced gap */
+     max-width: 340px; /* Slightly wider */
+}
+
+/* --- КОНЕЦ ФАЙЛА style.css --- */
