@@ -53,7 +53,7 @@ body {
 
 .app-container.dark-theme {
     width: 400px; /* iPhone X width */
-    height: 850px; /* iPhone X height */
+    height: 870px; /* iPhone X height */
     background-color: var(--dark-bg);
     border-radius: 20px; /* Rounded corners for the device */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
