@@ -1,0 +1,152 @@
+/* Стили для игры "Слово дня" */
+/* Используем переменные из основного приложения для согласованности */
+/* Если переменные не доступны (iframe), можно определить их заново или использовать конкретные значения */
+
+/* Пример определения переменных, если они не доступны из родителя */
+:root {
+    --bg-dark-primary: #1a253a; /* Фон контейнера игры */
+    --bg-dark-secondary: #2c3e50; /* Фон элементов */
+    --surface-dark: #34495e; /* Более темный фон элементов */
+    --primary-accent: #5dade2; /* Акцентный цвет (кнопки) */
+    --primary-accent-hover: #76c7f5; /* Акцентный цвет при наведении */
+    --text-primary: #ecf0f1; /* Основной текст */
+    --text-secondary: #bdc3c7; /* Второстепенный текст / плейсхолдер */
+    --border-color: #46607a; /* Цвет границ */
+    --success-color: #2ecc71; /* Цвет успеха (зеленый) */
+    --error-color: #e74c3c; /* Цвет ошибки (красный) */
+    --font-family-main: 'Nunito Sans', sans-serif;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    /* Устанавливаем фон из игровых цветов */
+    background-color: var(--bg-dark-primary);
+    font-family: var(--font-family-main);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Минимальная высота для центрирования */
+    box-sizing: border-box;
+    overflow-y: auto; /* Позволить прокрутку, если контент не влезает */
+}
+
+.word-of-the-day-container {
+    background-color: var(--bg-dark-secondary); /* Фон контейнера */
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    width: 90%;
+    max-width: 350px; /* Максимальная ширина самого контейнера */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступ между элементами */
+    align-items: center; /* Центрируем содержимое по горизонтали */
+    box-sizing: border-box;
+}
+
+.word-of-the-day-container h2 {
+    margin-top: 0;
+    margin-bottom: 5px; /* Уменьшенный отступ */
+    color: var(--primary-accent); /* Цвет заголовка */
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.word-of-the-day-container p {
+    margin: 0;
+    font-size: 1em;
+    color: var(--text-secondary); /* Цвет текста */
+}
+
+/* --- START REVERTED INPUT STYLE --- */
+#word-of-the-day-input {
+    /* Возвращаем стили к "окошку ввода" */
+    padding: 12px 15px; /* Возвращаем padding как был изначально */
+    font-size: 1.1em; /* Возвращаем размер шрифта */
+    border: 1px solid var(--border-color); /* Возвращаем стандартную границу */
+    border-radius: 8px; /* Возвращаем закругление */
+    background-color: var(--surface-dark); /* Возвращаем фон как был изначально */
+    color: var(--text-primary); /* Возвращаем цвет текста */
+
+    /* --- Стили для управления размером (во всю ширину контейнера) --- */
+    width: 100%; /* Занимаем всю доступную ширину родителя */
+    max-width: none; /* Снимаем ограничение максимальной ширины */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+
+    /* Убираем стили, скопированные из кнопки */
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s; /* Оставляем transition для фокуса */
+    font-weight: 400; /* Обычный вес шрифта */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); /* Опционально: вернуть стандартную тень окошка */
+
+
+    &::placeholder {
+        color: var(--text-secondary); /* Возвращаем цвет плейсхолдера */
+        opacity: 0.7; /* Возвращаем прозрачность плейсхолдера */
+    }
+}
+
+#word-of-the-day-input:focus {
+     /* Возвращаем стили фокуса как были изначально */
+    border-color: var(--primary-accent-hover);
+    box-shadow: 0 0 5px rgba(93, 173, 226, 0.5);
+}
+/* --- END REVERTED INPUT STYLE --- */
+
+
+#word-of-the-day-submit {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-accent);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+
+    /* --- Стили для управления размером кнопки (во всю ширину контейнера) --- */
+    width: 100%; /* Занимаем всю доступную ширину родителя */
+    max-width: none; /* Снимаем ограничение максимальной ширины */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+#word-of-the-day-submit:hover {
+    background-color: var(--primary-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#word-of-the-day-submit:active {
+    transform: scale(0.98) translateY(0px);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
+#word-of-the-day-result {
+    margin-top: 10px;
+    font-size: 1.1em;
+    min-height: 1.5em;
+    color: var(--text-secondary);
+    word-break: break-word;
+    white-space: pre-wrap;
+    /* --- Опционально: задать такую же ширину, как у input/кнопки --- */
+    width: 100%; /* Занимаем всю доступную ширину родителя */
+    max-width: none; /* Снимаем ограничение максимальной ширины */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+#word-of-the-day-result.result-success {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
+#word-of-the-day-result.result-error {
+    color: var(--error-color);
+    font-weight: 600;
+}

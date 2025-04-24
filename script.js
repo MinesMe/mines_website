@@ -434,6 +434,8 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'block_blast': gameUrl = 'games/block_blast/block_blast.html'; break;
             case 'match_3': gameUrl = 'games/match_3/match_3.html'; break;
             case 'word_find': gameUrl = 'games/word_find/word_find.html'; break;
+            case 'word_of_the_day': gameUrl = 'games/word_of_the_day/word_of_the_day.html'; break;
+            case 'referals': gameUrl = 'games/referals/referals.html'; break;
             default:
                 console.warn('Unknown game ID for iframe:', gameId);
                 resetGameSelection(); // Show placeholder if game unknown

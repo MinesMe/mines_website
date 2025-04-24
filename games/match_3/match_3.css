@@ -94,7 +94,7 @@ body {
 /* Используйте ОДИН из этих блоков, в зависимости от структуры папок */
 
 /* ВАРИАНТ 1: Если папка 'images' находится ВНУТРИ 'games/match_3/' */
-.item-type-0 { background-image: url('pear.png'); }
+.item-type-0 { background-image: url('images/pear.png'); }
 .item-type-1 { background-image: url('images/flower.png'); }
 .item-type-2 { background-image: url('images/leaf.png'); }
 .item-type-3 { background-image: url('images/blackberry.png'); }
