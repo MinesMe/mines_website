@@ -1,0 +1,243 @@
+/* --- START OF FILE games/game_menu.css --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap');
+
+/* Цветовые переменные, общие с основным приложением или уникальные для игр */
+:root {
+    --games-bg-dark-primary: #1a253a; /* Фон для тела iframe и game area wrapper */
+    --games-bg-dark-secondary: #2c3e50; /* Фон для selection container и sub-views */
+    --games-surface-dark: #34495e; /* Фон для заголовков sub-views */
+    --games-primary-accent: #5dade2; /* Голубой */
+    --games-primary-accent-hover: #76c7f5;
+    --games-text-primary: #ecf0f1; /* Основной текст */
+    --games-text-secondary: #bdc3c7; /* Второстепенный текст */
+    --games-border-color: #46607a; /* Цвет границ */
+    --games-font-family-main: 'Nunito Sans', sans-serif;
+
+    /* Games Button Colors */
+    --game-btn-block-blast: #008CBA; /* Blue */
+    --game-btn-block-blast-hover: #007A9E;
+    --game-btn-block-blast-active: #006682;
+    --game-btn-match3: #4CAF50; /* Green */
+    --game-btn-match3-hover: #45a049;
+    --game-btn-match3-active: #39843c;
+    --game-btn-word-find: #8e44ad; /* Purple */
+    --game-btn-word-find-hover: #9b59b6;
+    --game-btn-word-find-active: #7d3c98;
+    --game-btn-word-of-day: #e67e22; /* Orange */
+    --game-btn-word-of-day-hover: #d35400;
+    --game-btn-word-of-day-active: #b84e00;
+    --game-btn-leaderboard: #FFD700; /* Gold */
+    --game-btn-leaderboard-hover: #DAA520;
+    --game-btn-leaderboard-active: #B8860B;
+
+     /* Coin color (can be inherited from main app or redefined) */
+    --coin-color: #f0c419;
+
+    /* Success/Error colors for messages etc. */
+    --success-color: #2ecc71; /* Green */
+    --error-color: #e74c3c; /* Red */
+}
+
+body {
+    font-family: var(--games-font-family-main);
+    margin: 0;
+    padding: 0; /* Full control within iframe */
+    background-color: var(--games-bg-dark-primary);
+    color: var(--games-text-primary);
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    height: 100vh; /* Make body fill iframe height */
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling for the entire menu page */
+     /* Hide scrollbar within the iframe body */
+     &::-webkit-scrollbar { width: 0px; background: transparent; }
+     scrollbar-width: none;
+     -ms-overflow-style: none;
+}
+
+/* Wrapper for all menu content */
+.game-menu-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Ensure container takes full height */
+    /* Optional: Add padding around the entire menu content */
+    /* padding: 15px; */
+}
+
+.game-selection-container {
+    padding: 15px;
+    background-color: var(--games-bg-dark-secondary);
+    flex-shrink: 0; /* Prevent shrinking */
+    text-align: center;
+    /* Remove sticky position, the parent iframe scrolls */
+    /* position: sticky; top: 0; z-index: 9; */
+    border-bottom: 1px solid var(--games-border-color); /* Add a separator line */
+}
+
+.game-menu-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--games-text-primary);
+}
+
+.game-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* General button styles for game selection */
+.game-selection button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    font-size: 0.95em;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    font-family: var(--games-font-family-main);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff; /* Default text color for themed buttons */
+}
+.game-selection button:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.2); transform: translateY(-1px); }
+.game-selection button:active { transform: scale(0.98) translateY(0px); box-shadow: inset 0 2px 3px rgba(0,0,0,0.2); }
+
+/* Specific button color styles */
+.game-btn-block-blast { background-color: var(--game-btn-block-blast); }
+.game-btn-block-blast:hover { background-color: var(--game-btn-block-blast-hover); }
+.game-btn-block-blast:active { background-color: var(--game-btn-block-blast-active); }
+.game-btn-block-blast.active { background-color: var(--game-btn-block-blast-active); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+
+.game-btn-match-3 { background-color: var(--game-btn-match3); }
+.game-btn-match-3:hover { background-color: var(--game-btn-match3-hover); }
+.game-btn-match-3:active { background-color: var(--game-btn-match3-active); }
+.game-btn-match-3.active { background-color: var(--game-btn-match3-active); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+
+.game-btn-word-find { background-color: var(--game-btn-word-find); }
+.game-btn-word-find:hover { background-color: var(--game-btn-word-find-hover); }
+.game-btn-word-find:active { background-color: var(--game-btn-word-find-active); }
+.game-btn-word-find.active { background-color: var(--game-btn-word-find-active); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+
+.game-btn-word-of-day { background-color: var(--game-btn-word-of-day); }
+.game-btn-word-of-day:hover { background-color: var(--game-btn-word-of-day-hover); }
+.game-btn-word-of-day:active { background-color: var(--game-btn-word-of-day-active); }
+.game-btn-word-of-day.active { background-color: var(--game-btn-word-of-day-active); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+
+.game-btn-leaderboard { background-color: var(--game-btn-leaderboard); color: #222; /* Darker text for gold */ }
+.game-btn-leaderboard:hover { background-color: var(--game-btn-leaderboard-hover); }
+.game-btn-leaderboard:active { background-color: var(--game-btn-leaderboard-active); }
+.game-btn-leaderboard.active { background-color: var(--game-btn-leaderboard-active); box-shadow: inset 0 2px 4px rgba(0,0,0,0.25); }
+
+
+/* --- Styles for Game Sub-views Area --- */
+.game-area-wrapper {
+    flex-grow: 1; /* Occupy remaining space below selection */
+    position: relative; /* Positioning context for absolute sub-views */
+    margin: 15px; /* Margin around the sub-views area */
+    overflow: hidden; /* Hide overflowing content/transitions */
+    border-radius: 12px;
+    background-color: var(--games-bg-dark-primary); /* Background for the wrapper */
+    border: 1px solid var(--games-border-color);
+    /* The sub-views are stacked absolutely inside this */
+}
+
+.game-sub-view {
+    width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0; /* Stacked absolutely within the wrapper */
+    display: flex; flex-direction: column; /* Default layout for sub-views */
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+    z-index: 1; /* Default z-index */
+    background-color: var(--games-bg-dark-secondary); /* Background for sub-views content */
+    box-sizing: border-box;
+     overflow-y: auto; /* Allow content inside subview to scroll */
+     /* Hide scrollbar within sub-view */
+     &::-webkit-scrollbar { width: 0px; background: transparent; }
+     scrollbar-width: none;
+     -ms-overflow-style: none;
+}
+.game-sub-view.visible { opacity: 1; visibility: visible; transition-delay: 0s; z-index: 2; } /* Bring visible view to front */
+
+
+/* Placeholder/Iframe container */
+#game-content-container {
+     justify-content: center; align-items: center;
+     padding: 20px; /* Padding for placeholder */
+}
+.game-content-container .placeholder-text { color: var(--games-text-secondary); font-size: 1.1em; padding: 0; text-align: center; }
+/* The internal iframe that loads the actual game HTML */
+#game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: none; /* Hidden by default, shown when game is loaded */
+    background-color: var(--games-bg-dark-primary); /* Match background */
+    /* Remove absolute positioning, it fills the parent flex container */
+    position: static;
+}
+
+/* Leaderboard view */
+#leaderboard-view { padding-bottom: 15px; /* Add padding if list scrolls */ }
+
+/* Word of Day view */
+#word-of-day-view { padding: 20px; justify-content: flex-start; /* Align content to top */ }
+
+/* Styles for sub-view headers (Leaderboard, Word of Day) */
+.game-sub-view-header { display: flex; align-items: center; background-color: var(--games-surface-dark); border-bottom: 1px solid var(--games-border-color); flex-shrink: 0; margin: -20px -20px 20px -20px; /* Negative margin to cover padding */ padding: 10px 20px; }
+.game-sub-view-header h3 { margin: 0; flex-grow: 1; text-align: center; font-size: 1.1em; color: var(--games-text-primary); font-weight: 600; margin-left: -30px; /* Offset for back button */ }
+.sub-view-back-btn { padding: 5px 8px 5px 0; font-size: 1.2em; color: var(--games-text-primary); background: none; border: none; cursor: pointer; line-height: 1; }
+.sub-view-back-btn:hover { color: var(--games-primary-accent-hover); }
+
+
+/* Specific styles for Word of Day content */
+.word-of-day-content { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+.word-of-day-content p { margin: 0; font-size: 1em; color: var(--games-text-primary); }
+#word-of-day-input {
+    padding: 12px; font-size: 1em; border: 1px solid var(--games-border-color); border-radius: 8px;
+    background-color: var(--games-bg-dark-primary); color: var(--games-text-primary);
+    width: calc(100% - 26px); /* Adjust width for padding/border */
+    box-sizing: border-box; text-align: center;
+}
+#word-of-day-input::placeholder { color: var(--games-text-secondary); opacity: 0.7; }
+#word-of-day-input:focus { outline: none; border-color: var(--games-primary-accent-hover); box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.3); }
+
+#check-word-btn {
+    padding: 12px 25px; font-size: 1em; cursor: pointer; background-color: var(--success-color);
+    color: white; border: none; border-radius: 10px; font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+#check-word-btn:hover { background-color: #28b463; box-shadow: 0 5px 10px rgba(0,0,0,0.25); transform: translateY(-1px); }
+#check-word-btn:active { transform: scale(0.98) translateY(0px); box-shadow: inset 0 1px 2px rgba(0,0,0,0.3); }
+
+.word-message { margin-top: 20px; font-size: 1.1em; font-weight: bold; text-align: center; min-height: 1.5em; /* Reserve space */ }
+/* Specific colors for the word message */
+.word-message.success { color: var(--games-primary-accent-hover); } /* Use accent for positive */
+.word-message.error { color: var(--games-text-secondary); } /* Use secondary for neutral/negative */
+
+
+/* Leaderboard List */
+.leaderboard-list { list-style: none; padding: 0 15px 15px 15px; margin: 0; flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; /* Hide scrollbar */ &::-webkit-scrollbar { width: 0px; background: transparent; } scrollbar-width: none; -ms-overflow-style: none; }
+.leaderboard-item { display: flex; align-items: center; background-color: var(--games-surface-dark); padding: 10px 15px; border-radius: 8px; color: var(--games-text-primary); font-size: 0.95em; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); transition: background-color 0.2s; }
+.leaderboard-item:hover { background-color: #40566e; }
+.leaderboard-item .rank { font-weight: bold; width: 40px; text-align: center; flex-shrink: 0; margin-right: 10px; color: var(--games-primary-accent); font-size: 1.1em; display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+.leaderboard-item .rank i { font-size: 0.9em; }
+.leaderboard-item .name { flex-grow: 1; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 10px; }
+.leaderboard-item .score { font-weight: 600; color: var(--coin-color); white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+.leaderboard-item .coin-icon { width: 16px; height: 16px; }
+/* Specific rank colors (can use button colors or other palette) */
+.leaderboard-item.rank-1 { background-color: #5a4a1a; border-left: 4px solid var(--game-btn-leaderboard); } /* Gold */
+.leaderboard-item.rank-2 { background-color: #444a50; border-left: 4px solid #bdc3c7; } /* Silver/Grey */
+.leaderboard-item.rank-3 { background-color: #5a3e2b; border-left: 4px solid var(--game-btn-word-of-day-hover); } /* Bronze/Orange */
+.leaderboard-item.rank-1 .rank { color: var(--game-btn-leaderboard); font-size: 1.2em;}
+.leaderboard-item.rank-2 .rank { color: #bdc3c7; }
+.leaderboard-item.rank-3 .rank { color: var(--game-btn-word-of-day-hover); }
+.leaderboard-item.rank-1 .fa-crown { color: var(--game-btn-leaderboard); }
+.leaderboard-item.rank-2 .fa-medal { color: #bdc3c7; }
+.leaderboard-item.rank-3 .fa-medal { color: var(--game-btn-word-of-day-hover); }

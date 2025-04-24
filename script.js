@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (coinsEarned > 0) {
                 updateUserCoins(userCoins + coinsEarned);
                 // Replace alert with a less intrusive notification if desired
-                alert(`Игра "${gameName}" окончена!\nВаш счет: ${score}\nВы заработали ${coinsEarned} монет Moby!`);
+                alert(`Игра "${gameName}" окончена!\nВаш счет: ${score}\nВы заработали ${coinsEarned} Халвинок!`);
             } else {
                 alert(`Игра "${gameName}" окончена!\nВаш счет: ${score}`);
             }

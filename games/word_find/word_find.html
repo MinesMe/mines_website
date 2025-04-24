@@ -1,3 +1,4 @@
+<!-- START OF FILE word_find.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -10,8 +11,9 @@
     <div class="wordcircle-game-container">
         <div class="wordcircle-header">
             <h3>Найдите слова:</h3>
-            <div id="word-list-circle" class="word-list-circle">
-                <!-- Список слов -->
+            <!-- Контейнер для сетки слов (теперь просто ряды слов) -->
+            <div id="wordcircle-grid-container" class="wordcircle-grid-container">
+                <!-- Ряды слов будут здесь -->
             </div>
         </div>
 
@@ -23,20 +25,23 @@
              <svg id="selection-line-svg" class="selection-line-svg">
                  <polyline id="selection-line" class="selection-line"></polyline>
              </svg>
-             <div id="current-selection-circle" class="current-selection-circle"></div>
+             <!-- Элемент для отображения текущего выбранного слова удален -->
         </div>
 
         <div class="wordcircle-footer">
-             <!-- Кнопки удалены -->
-             <button id="play-again-wordcircle-footer" title="Новый набор слов">Новый уровень</button> <!-- Переименовал ID кнопки -->
+             <!-- Кнопка для перемешивания букв -->
+             <button id="play-again-wordcircle-footer" title="Перемешать буквы">Перемешать</button>
         </div>
 
+        <!-- Окно победы/сообщения о завершении уровня -->
         <div id="win-message-circle" class="win-message-circle" style="display: none;">
             <h2>Уровень пройден!</h2>
-            <button id="play-again-wordcircle-win">Следующий уровень</button> <!-- Переименовал ID кнопки -->
+            <p id="development-message" style="display: none;"></p> <!-- Параграф для сообщения "Продолжение в разработке" -->
+            <button id="play-again-wordcircle-win">Следующий уровень</button>
         </div>
     </div>
 
     <script src="word_find.js"></script>
 </body>
 </html>
+<!-- END OF FILE word_find.html -->
